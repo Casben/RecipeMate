@@ -14,6 +14,7 @@ enum Constants {
     
     enum CellIds {
         static let category = "CategoryCell"
+        static let ingredient = "IngredientCell"
     }
     
     enum CategoryImage {

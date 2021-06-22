@@ -30,7 +30,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fzU-Po-w4g" userLabel="material view">
                                                     <rect key="frame" x="20" y="11" width="374" height="128"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.65000000000000002" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EBe-dF-uoS">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EBe-dF-uoS">
                                                             <rect key="frame" x="0.0" y="0.0" width="374" height="128"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0pT-Ov-gao">
@@ -137,9 +137,61 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tk4-zU-D0O">
-                                <rect key="frame" x="0.0" y="140" width="414" height="673"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tk4-zU-D0O">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientCell" rowHeight="100" id="ZNo-ty-e0t" customClass="IngredientCell" customModule="RecipeMate" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZNo-ty-e0t" id="Ytk-zd-04C">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ith-MX-ZGl" userLabel="material view">
+                                                    <rect key="frame" x="20" y="11" width="374" height="78"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="zjo-ij-1T3">
+                                                            <rect key="frame" x="20" y="-1" width="80" height="80"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="80" id="5pA-ze-gWW"/>
+                                                                <constraint firstAttribute="height" constant="80" id="LlS-QE-AEX"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beef" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KgM-Qs-v9r">
+                                                            <rect key="frame" x="108" y="27" width="258" height="24"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="20"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstItem="KgM-Qs-v9r" firstAttribute="leading" secondItem="zjo-ij-1T3" secondAttribute="trailing" constant="8" id="7EQ-Wy-s75"/>
+                                                        <constraint firstItem="KgM-Qs-v9r" firstAttribute="centerY" secondItem="ith-MX-ZGl" secondAttribute="centerY" id="8am-0D-IJd"/>
+                                                        <constraint firstAttribute="trailing" secondItem="KgM-Qs-v9r" secondAttribute="trailing" constant="8" id="MkB-Pv-aO0"/>
+                                                        <constraint firstItem="zjo-ij-1T3" firstAttribute="leading" secondItem="ith-MX-ZGl" secondAttribute="leading" constant="20" id="Mmf-iF-Rkb"/>
+                                                        <constraint firstItem="zjo-ij-1T3" firstAttribute="centerY" secondItem="ith-MX-ZGl" secondAttribute="centerY" id="umo-yO-VDy"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ith-MX-ZGl" firstAttribute="leading" secondItem="Ytk-zd-04C" secondAttribute="leadingMargin" id="Dcv-GZ-ceX"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="ith-MX-ZGl" secondAttribute="trailing" id="Low-i6-dhf"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="ith-MX-ZGl" secondAttribute="bottom" id="PXg-Zo-JCm"/>
+                                                <constraint firstItem="ith-MX-ZGl" firstAttribute="top" secondItem="Ytk-zd-04C" secondAttribute="topMargin" id="g1d-g4-PC2"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="ingredientImageView" destination="zjo-ij-1T3" id="rkq-DN-5Dm"/>
+                                            <outlet property="ingredientLabel" destination="KgM-Qs-v9r" id="6BM-5k-YYQ"/>
+                                            <outlet property="materialView" destination="ith-MX-ZGl" id="8hU-E9-1xh"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="4H6-Id-BvV"/>
@@ -152,6 +204,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Ingredients" id="5Pl-8B-iP3"/>
+                    <connections>
+                        <outlet property="tableView" destination="tk4-zU-D0O" id="tiQ-00-KtT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wj8-DU-9lr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -196,6 +251,7 @@
     <resources>
         <image name="book" catalog="system" width="128" height="102"/>
         <image name="leaf" catalog="system" width="128" height="109"/>
+        <image name="placeholder" width="50" height="50"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

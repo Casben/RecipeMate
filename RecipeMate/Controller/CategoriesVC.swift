@@ -20,6 +20,11 @@ class CategoriesVC: UIViewController {
         configure()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        intializeCategories()
+    }
+    
     func configure() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -47,7 +52,7 @@ extension CategoriesVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIds.category, for: indexPath) as? CategoryCell else { return UITableViewCell()}
-        configureCell(cell, indexpath: indexPath)
+        configureCell(cell, indexPath: indexPath)
         return cell
     }
     
@@ -55,8 +60,8 @@ extension CategoriesVC: UITableViewDelegate, UITableViewDataSource {
         return 150
     }
     
-    func configureCell(_ cell: CategoryCell, indexpath: IndexPath) {
-        let category = controller.object(at: indexpath)
+    func configureCell(_ cell: CategoryCell, indexPath: IndexPath) {
+        let category = controller.object(at: indexPath)
         cell.configureCell(category)
     }
     

@@ -5,6 +5,7 @@
         <relationship name="recipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="category" inverseEntity="Recipe"/>
     </entity>
     <entity name="Ingredient" representedClassName="Ingredient" syncable="YES" codeGenerationType="class">
+        <attribute name="image" optional="YES" attributeType="Transformable"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="recipe" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Recipe" inverseName="ingredient" inverseEntity="Recipe"/>
     </entity>
@@ -18,7 +19,7 @@
     </entity>
     <elements>
         <element name="Recipe" positionX="-160.9886779785156" positionY="127.4660339355469" width="128" height="133"/>
-        <element name="Ingredient" positionX="46.31863403320312" positionY="102.1036682128906" width="128" height="73"/>
+        <element name="Ingredient" positionX="46.31863403320312" positionY="102.1036682128906" width="128" height="88"/>
         <element name="Category" positionX="-412.9615783691406" positionY="138.5067749023438" width="128" height="73"/>
     </elements>
 </model>
