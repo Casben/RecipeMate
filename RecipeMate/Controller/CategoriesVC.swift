@@ -20,11 +20,6 @@ class CategoriesVC: UIViewController {
         configure()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        intializeCategories()
-    }
-    
     func configure() {
         tableView.delegate = self
         tableView.dataSource = self

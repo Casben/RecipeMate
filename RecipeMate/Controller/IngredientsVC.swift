@@ -18,13 +18,12 @@ class IngredientsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
-
     }
     
     func configure() {
         tableView.delegate = self
         tableView.dataSource = self
-        intializeCategories()
+        initializeIngredients()
     }
 
 }
@@ -63,7 +62,7 @@ extension IngredientsVC: UITableViewDelegate, UITableViewDataSource {
 
 extension IngredientsVC: NSFetchedResultsControllerDelegate {
     
-    func intializeCategories() {
+    func initializeIngredients() {
         let fetchRequest: NSFetchRequest<Ingredient> = Ingredient.fetchRequest()
         let nameSort = NSSortDescriptor(key: "name", ascending: true)
         
@@ -81,7 +80,7 @@ extension IngredientsVC: NSFetchedResultsControllerDelegate {
         }
         
         if controller.fetchedObjects?.count == 0 {
-            viewModel.generateCategories()
+            viewModel.generateIngredients()
         }
     }
     
@@ -90,6 +89,6 @@ extension IngredientsVC: NSFetchedResultsControllerDelegate {
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        
+        tableView.endUpdates()
     }
 }
