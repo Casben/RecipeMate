@@ -47,12 +47,17 @@ extension CategoriesVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIds.category, for: indexPath) as? CategoryCell else { return UITableViewCell()}
-        
+        configureCell(cell, indexpath: indexPath)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
+    }
+    
+    func configureCell(_ cell: CategoryCell, indexpath: IndexPath) {
+        let category = controller.object(at: indexpath)
+        cell.configureCell(category)
     }
     
 }

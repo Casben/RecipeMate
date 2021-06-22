@@ -21,7 +21,7 @@ struct CategoriesViewModel {
         vegan.name = "Vegan"
         
         let paleo = Category(context: Constants.context)
-        paleo.name = "Vegan"
+        paleo.name = "Paleo"
         
         let keto = Category(context: Constants.context)
         keto.name = "Keto"

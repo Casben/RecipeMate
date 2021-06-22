@@ -19,6 +19,7 @@
 		CB70CF9A2682401E0062A33A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB70CF992682401E0062A33A /* Constants.swift */; };
 		CB70CF9C268249BD0062A33A /* CategoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB70CF9B268249BD0062A33A /* CategoriesViewModel.swift */; };
 		CB70CF9E268251820062A33A /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB70CF9D268251820062A33A /* CategoryCell.swift */; };
+		CB70CFA0268255E80062A33A /* MaterialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB70CF9F268255E80062A33A /* MaterialView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		CB70CF992682401E0062A33A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CB70CF9B268249BD0062A33A /* CategoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewModel.swift; sourceTree = "<group>"; };
 		CB70CF9D268251820062A33A /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		CB70CF9F268255E80062A33A /* MaterialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 		CB70CF8E268239790062A33A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CB70CF9F268255E80062A33A /* MaterialView.swift */,
 				CB70CF9D268251820062A33A /* CategoryCell.swift */,
 			);
 			path = View;
@@ -194,6 +197,7 @@
 				CB70CF7826793BDD0062A33A /* SceneDelegate.swift in Sources */,
 				CB70CF9E268251820062A33A /* CategoryCell.swift in Sources */,
 				CB70CF9726823E210062A33A /* SearchVC.swift in Sources */,
+				CB70CFA0268255E80062A33A /* MaterialView.swift in Sources */,
 				CB70CF9C268249BD0062A33A /* CategoriesViewModel.swift in Sources */,
 				CB70CF9A2682401E0062A33A /* Constants.swift in Sources */,
 			);

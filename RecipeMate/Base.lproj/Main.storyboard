@@ -16,17 +16,59 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="s18-GH-qZl">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="s18-GH-qZl">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="O9X-Ph-Ci7">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoryCell" rowHeight="150" id="O9X-Ph-Ci7" customClass="CategoryCell" customModule="RecipeMate" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="O9X-Ph-Ci7" id="dtO-Co-969">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fzU-Po-w4g" userLabel="material view">
+                                                    <rect key="frame" x="20" y="11" width="374" height="128"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.65000000000000002" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EBe-dF-uoS">
+                                                            <rect key="frame" x="0.0" y="0.0" width="374" height="128"/>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0pT-Ov-gao">
+                                                            <rect key="frame" x="147.5" y="43.5" width="79.5" height="41"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="34"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstItem="0pT-Ov-gao" firstAttribute="centerX" secondItem="fzU-Po-w4g" secondAttribute="centerX" id="LuR-U2-Szg"/>
+                                                        <constraint firstAttribute="bottom" secondItem="EBe-dF-uoS" secondAttribute="bottom" id="Mth-d1-ujY"/>
+                                                        <constraint firstAttribute="trailing" secondItem="EBe-dF-uoS" secondAttribute="trailing" id="Qdw-Ny-5jU"/>
+                                                        <constraint firstItem="EBe-dF-uoS" firstAttribute="top" secondItem="fzU-Po-w4g" secondAttribute="top" id="TLy-wY-Gbf"/>
+                                                        <constraint firstItem="EBe-dF-uoS" firstAttribute="leading" secondItem="fzU-Po-w4g" secondAttribute="leading" id="ZW7-Vn-4dF"/>
+                                                        <constraint firstItem="0pT-Ov-gao" firstAttribute="centerY" secondItem="fzU-Po-w4g" secondAttribute="centerY" id="hMt-kt-8Ds"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="fzU-Po-w4g" firstAttribute="leading" secondItem="dtO-Co-969" secondAttribute="leadingMargin" id="8p7-MM-j5C"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="fzU-Po-w4g" secondAttribute="bottom" id="Q7U-Ae-GwU"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="fzU-Po-w4g" secondAttribute="trailing" id="Vhj-Xd-aYT"/>
+                                                <constraint firstItem="fzU-Po-w4g" firstAttribute="top" secondItem="dtO-Co-969" secondAttribute="topMargin" id="jKv-TB-Mmi"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="categoryImageView" destination="EBe-dF-uoS" id="qsk-Ya-j0Z"/>
+                                            <outlet property="categoryNameLabel" destination="0pT-Ov-gao" id="u35-cx-nQH"/>
+                                            <outlet property="materialView" destination="fzU-Po-w4g" id="TwN-kD-J90"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -56,7 +98,7 @@
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="URz-zR-UgP">
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" systemColor="systemIndigoColor"/>
                     </tabBar>
                     <connections>
                         <segue destination="AcX-R8-BIk" kind="relationship" relationship="viewControllers" id="26q-4R-KgC"/>
@@ -156,6 +198,9 @@
         <image name="leaf" catalog="system" width="128" height="109"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
