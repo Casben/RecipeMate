@@ -22,6 +22,8 @@
 		CB70CFA0268255E80062A33A /* MaterialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB70CF9F268255E80062A33A /* MaterialView.swift */; };
 		CB70CFA2268289E80062A33A /* IngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB70CFA1268289E80062A33A /* IngredientCell.swift */; };
 		CB70CFA426828DDE0062A33A /* IngredientsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB70CFA326828DDE0062A33A /* IngredientsViewModel.swift */; };
+		CB70CFA626838F480062A33A /* RecipesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB70CFA526838F480062A33A /* RecipesVC.swift */; };
+		CB70CFA8268395450062A33A /* RecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB70CFA7268395450062A33A /* RecipeCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		CB70CF9F268255E80062A33A /* MaterialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialView.swift; sourceTree = "<group>"; };
 		CB70CFA1268289E80062A33A /* IngredientCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientCell.swift; sourceTree = "<group>"; };
 		CB70CFA326828DDE0062A33A /* IngredientsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsViewModel.swift; sourceTree = "<group>"; };
+		CB70CFA526838F480062A33A /* RecipesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesVC.swift; sourceTree = "<group>"; };
+		CB70CFA7268395450062A33A /* RecipeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +99,7 @@
 				CB70CF9226823D530062A33A /* CategoriesVC.swift */,
 				CB70CF9426823E090062A33A /* IngredientsVC.swift */,
 				CB70CF9626823E210062A33A /* SearchVC.swift */,
+				CB70CFA526838F480062A33A /* RecipesVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -105,6 +110,7 @@
 				CB70CF9F268255E80062A33A /* MaterialView.swift */,
 				CB70CF9D268251820062A33A /* CategoryCell.swift */,
 				CB70CFA1268289E80062A33A /* IngredientCell.swift */,
+				CB70CFA7268395450062A33A /* RecipeCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -199,6 +205,7 @@
 				CB70CF9326823D530062A33A /* CategoriesVC.swift in Sources */,
 				CB70CF9526823E090062A33A /* IngredientsVC.swift in Sources */,
 				CB70CF7626793BDD0062A33A /* AppDelegate.swift in Sources */,
+				CB70CFA8268395450062A33A /* RecipeCell.swift in Sources */,
 				CB70CF8026793BDD0062A33A /* RecipeMate.xcdatamodeld in Sources */,
 				CB70CF7826793BDD0062A33A /* SceneDelegate.swift in Sources */,
 				CB70CFA426828DDE0062A33A /* IngredientsViewModel.swift in Sources */,
@@ -206,6 +213,7 @@
 				CB70CFA2268289E80062A33A /* IngredientCell.swift in Sources */,
 				CB70CF9726823E210062A33A /* SearchVC.swift in Sources */,
 				CB70CFA0268255E80062A33A /* MaterialView.swift in Sources */,
+				CB70CFA626838F480062A33A /* RecipesVC.swift in Sources */,
 				CB70CF9C268249BD0062A33A /* CategoriesViewModel.swift in Sources */,
 				CB70CF9A2682401E0062A33A /* Constants.swift in Sources */,
 			);

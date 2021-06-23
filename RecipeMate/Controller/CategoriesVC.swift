@@ -26,6 +26,16 @@ class CategoriesVC: UIViewController {
         intializeCategories()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Constants.Segues.recipes {
+            if let destination = segue.destination as? RecipesVC {
+                if let category = sender as? Category {
+                    destination.recipeCategory = category
+                }
+            }
+        }
+    }
+    
 }
 
 extension CategoriesVC: UITableViewDelegate, UITableViewDataSource {
@@ -49,6 +59,13 @@ extension CategoriesVC: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIds.category, for: indexPath) as? CategoryCell else { return UITableViewCell()}
         configureCell(cell, indexPath: indexPath)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let objects = controller.fetchedObjects, objects.count > 0 {
+            let recipeCategory = objects[indexPath.row]
+            performSegue(withIdentifier: Constants.Segues.recipes, sender: recipeCategory)
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
