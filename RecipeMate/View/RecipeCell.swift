@@ -13,9 +13,9 @@ class RecipeCell: UITableViewCell {
     @IBOutlet weak var ingredientLabel: UILabel!
     @IBOutlet weak var materialView: UIView!
     
-    func configureCell(_ ingredient: Ingredient) {
-        ingredientImageView.image = ingredient.image as? UIImage
-        ingredientLabel.text = ingredient.name
+    func configureCell(_ recipe: Recipe) {
+        ingredientImageView.image = recipe.image as? UIImage
+        ingredientLabel.text = recipe.name
         
         ingredientImageView.layer.cornerRadius = 10
         materialView.layer.cornerRadius = 10
