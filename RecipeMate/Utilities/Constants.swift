@@ -16,10 +16,12 @@ enum Constants {
         static let category = "CategoryCell"
         static let ingredient = "IngredientCell"
         static let recipe = "RecipeCell"
+        
     }
     
     enum Segues {
         static let recipes = "RecipeSegue"
+        static let addRecipe = "AddRecipeSegue"
     }
     
     enum CategoryImage {

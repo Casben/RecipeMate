@@ -26,6 +26,17 @@ class RecipesVC: UIViewController {
         initializeRecipes()
         title = recipeCategory.name
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Constants.Segues.addRecipe {
+            let destination = segue.destination as! AddRecipeVC
+            destination.delegate = self
+        }
+    }
+    
+    @IBAction func addRecipeButtonTapped(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: Constants.Segues.addRecipe, sender: nil)
+    }
 
 }
 
@@ -96,5 +107,11 @@ extension RecipesVC: NSFetchedResultsControllerDelegate {
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
+    }
+}
+
+extension RecipesVC: AddRecipeVCDelegate {
+    func cancelButtonTapped() {
+        dismiss(animated: true)
     }
 }

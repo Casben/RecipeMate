@@ -24,6 +24,7 @@
 		CB70CFA426828DDE0062A33A /* IngredientsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB70CFA326828DDE0062A33A /* IngredientsViewModel.swift */; };
 		CB70CFA626838F480062A33A /* RecipesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB70CFA526838F480062A33A /* RecipesVC.swift */; };
 		CB70CFA8268395450062A33A /* RecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB70CFA7268395450062A33A /* RecipeCell.swift */; };
+		CB70CFAA2684F22C0062A33A /* AddRecipeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB70CFA92684F22C0062A33A /* AddRecipeVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		CB70CFA326828DDE0062A33A /* IngredientsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsViewModel.swift; sourceTree = "<group>"; };
 		CB70CFA526838F480062A33A /* RecipesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesVC.swift; sourceTree = "<group>"; };
 		CB70CFA7268395450062A33A /* RecipeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCell.swift; sourceTree = "<group>"; };
+		CB70CFA92684F22C0062A33A /* AddRecipeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipeVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				CB70CF9426823E090062A33A /* IngredientsVC.swift */,
 				CB70CF9626823E210062A33A /* SearchVC.swift */,
 				CB70CFA526838F480062A33A /* RecipesVC.swift */,
+				CB70CFA92684F22C0062A33A /* AddRecipeVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 				CB70CFA0268255E80062A33A /* MaterialView.swift in Sources */,
 				CB70CFA626838F480062A33A /* RecipesVC.swift in Sources */,
 				CB70CF9C268249BD0062A33A /* CategoriesViewModel.swift in Sources */,
+				CB70CFAA2684F22C0062A33A /* AddRecipeVC.swift in Sources */,
 				CB70CF9A2682401E0062A33A /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
