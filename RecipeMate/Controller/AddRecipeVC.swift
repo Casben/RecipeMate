@@ -10,6 +10,7 @@ import CoreData
 
 protocol AddRecipeVCDelegate: AnyObject {
     func cancelButtonTapped()
+    func recipeCreated(_ recipe: Recipe)
 }
 
 class AddRecipeVC: UIViewController {
@@ -17,11 +18,18 @@ class AddRecipeVC: UIViewController {
     @IBOutlet weak var addRecipeView: UIView!
     @IBOutlet weak var saveRecipeButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var recipeNameTextField: UITextField!
+    @IBOutlet weak var descriptionTextField: UITextField!
+    @IBOutlet weak var instructionsTextField: UITextField!
+    @IBOutlet weak var prepTimeTextField: UITextField!
     
     var controller: NSFetchedResultsController<Ingredient>!
-    let viewModel = IngredientsViewModel()
+    let ingredientsViewModel = IngredientsViewModel()
+    var viewModel = AddRecipeViewModel()
+    
     weak var delegate: AddRecipeVCDelegate?
     
+    var category: Category!
     var ingredientsList = [Ingredient]()
     var selectedIngredients = [Ingredient]()
     var isSelectedForRecipe = [Bool]()
@@ -38,11 +46,53 @@ class AddRecipeVC: UIViewController {
         addRecipeView.layer.cornerRadius = 10
         saveRecipeButton.layer.cornerRadius = 10
         tableView.layer.cornerRadius = 10
+        saveRecipeButton.isEnabled = false
     }
     
     
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
         delegate?.cancelButtonTapped()
+    }
+    
+    @IBAction func textFieldDidChange(_ sender: UITextField) {
+        if sender == recipeNameTextField {
+            viewModel.recipeName = sender.text
+        } else if sender == descriptionTextField {
+            viewModel.descriptionName = sender.text
+        } else if sender == instructionsTextField {
+            viewModel.instructions = sender.text
+        } else {
+            viewModel.prepTime = sender.text
+        }
+        checkFormStatus()
+    }
+    
+    @IBAction func saveButtonTapped(_ sender: UIButton) {
+        _ = ingredientsList.map { ingredient in
+            if ingredient.isSelectedForRecipe {
+                selectedIngredients.append(ingredient)
+            } 
+        }
+        
+        let createdRecipe = Recipe(context: Constants.context)
+        createdRecipe.name = recipeNameTextField.text
+        createdRecipe.details = descriptionTextField.text
+        createdRecipe.instructions = instructionsTextField.text
+        createdRecipe.prepTime = prepTimeTextField.text
+        createdRecipe.category = category
+        createdRecipe.image = UIImage(named: "placeholder")
+        Constants.appDelegate.saveContext()
+        delegate?.recipeCreated(createdRecipe)
+    }
+    
+    func checkFormStatus() {
+        if viewModel.formIsValid {
+            saveRecipeButton.isEnabled = true
+            saveRecipeButton.backgroundColor = .systemIndigo
+        } else {
+            saveRecipeButton.isEnabled = false
+            saveRecipeButton.backgroundColor = .lightGray
+        }
     }
 
 }
@@ -69,11 +119,7 @@ extension AddRecipeVC: UITableViewDelegate, UITableViewDataSource {
 //        ingredient.isSelectedForRecipe = true
 //        selectedIngredients.append(ingredient)
         ingredientsList[indexPath.row].isSelectedForRecipe = true
-        print("selected index is \(indexPath)")
         cell?.accessoryType = .checkmark
-        
-        print("selectedIngredients count is \(selectedIngredients.count)")
-        
         
     }
     
@@ -131,7 +177,7 @@ extension AddRecipeVC: NSFetchedResultsControllerDelegate {
         }
         
         if controller.fetchedObjects?.count == 0 {
-            viewModel.generateIngredients()
+            ingredientsViewModel.generateIngredients()
             
         }
         

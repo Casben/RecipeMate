@@ -25,6 +25,7 @@
 		CB70CFA626838F480062A33A /* RecipesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB70CFA526838F480062A33A /* RecipesVC.swift */; };
 		CB70CFA8268395450062A33A /* RecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB70CFA7268395450062A33A /* RecipeCell.swift */; };
 		CB70CFAA2684F22C0062A33A /* AddRecipeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB70CFA92684F22C0062A33A /* AddRecipeVC.swift */; };
+		CB70CFAC26855B700062A33A /* AddRecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB70CFAB26855B700062A33A /* AddRecipeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		CB70CFA526838F480062A33A /* RecipesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesVC.swift; sourceTree = "<group>"; };
 		CB70CFA7268395450062A33A /* RecipeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCell.swift; sourceTree = "<group>"; };
 		CB70CFA92684F22C0062A33A /* AddRecipeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipeVC.swift; sourceTree = "<group>"; };
+		CB70CFAB26855B700062A33A /* AddRecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 			children = (
 				CB70CF9B268249BD0062A33A /* CategoriesViewModel.swift */,
 				CB70CFA326828DDE0062A33A /* IngredientsViewModel.swift */,
+				CB70CFAB26855B700062A33A /* AddRecipeViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB70CFAC26855B700062A33A /* AddRecipeViewModel.swift in Sources */,
 				CB70CF9326823D530062A33A /* CategoriesVC.swift in Sources */,
 				CB70CF9526823E090062A33A /* IngredientsVC.swift in Sources */,
 				CB70CF7626793BDD0062A33A /* AppDelegate.swift in Sources */,

@@ -104,7 +104,7 @@
                                 <rect key="frame" x="0.0" y="140" width="414" height="673"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientCell" rowHeight="100" id="NkR-wZ-tz6" userLabel="RecipeCell" customClass="RecipeCell" customModule="RecipeMate" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeCell" rowHeight="100" id="NkR-wZ-tz6" userLabel="RecipeCell" customClass="RecipeCell" customModule="RecipeMate" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="24.5" width="414" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NkR-wZ-tz6" id="SnA-dk-NWD">
@@ -227,6 +227,9 @@
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="NO"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="textFieldDidChange:" destination="BXP-mS-9CV" eventType="editingChanged" id="l3j-KT-pax"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tn3-Yt-tPm">
                                         <rect key="frame" x="118" y="62" width="236" height="40"/>
@@ -238,6 +241,9 @@
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="NO"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="textFieldDidChange:" destination="BXP-mS-9CV" eventType="editingChanged" id="rOp-Oy-83m"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Instructions" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eN3-C4-JsW">
                                         <rect key="frame" x="20" y="464" width="334" height="100"/>
@@ -249,6 +255,9 @@
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="NO"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="textFieldDidChange:" destination="BXP-mS-9CV" eventType="editingChanged" id="tTW-dK-60I"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Prep Time (mins.)" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="25R-RY-PEA">
                                         <rect key="frame" x="107" y="584" width="160" height="34"/>
@@ -260,6 +269,9 @@
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="NO"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="textFieldDidChange:" destination="BXP-mS-9CV" eventType="editingChanged" id="4r7-68-2Kl"/>
+                                        </connections>
                                     </textField>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mdx-Go-9T8">
                                         <rect key="frame" x="20" y="112" width="334" height="342"/>
@@ -348,7 +360,7 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d50-lR-4RH">
                                 <rect key="frame" x="20" y="802" width="374" height="60"/>
-                                <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="fGN-4F-dgk"/>
                                 </constraints>
@@ -358,6 +370,9 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="saveButtonTapped:" destination="BXP-mS-9CV" eventType="touchUpInside" id="tL1-qB-FBZ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="5dG-5Y-Snf"/>
@@ -378,6 +393,10 @@
                     <navigationItem key="navigationItem" id="K8C-2u-2Gy"/>
                     <connections>
                         <outlet property="addRecipeView" destination="2t8-Zw-Oe4" id="3RJ-WK-ms1"/>
+                        <outlet property="descriptionTextField" destination="Tn3-Yt-tPm" id="oD9-Rj-rur"/>
+                        <outlet property="instructionsTextField" destination="eN3-C4-JsW" id="HEk-m4-Yd0"/>
+                        <outlet property="prepTimeTextField" destination="25R-RY-PEA" id="P7g-9Z-nu4"/>
+                        <outlet property="recipeNameTextField" destination="BqB-sf-oqf" id="jVI-YK-xEY"/>
                         <outlet property="saveRecipeButton" destination="d50-lR-4RH" id="v9v-Ml-6fv"/>
                         <outlet property="tableView" destination="mdx-Go-9T8" id="RG0-9V-VOe"/>
                     </connections>
@@ -392,6 +411,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Qob-5p-jCP" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="URz-zR-UgP">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="selectedImageTintColor" systemColor="systemIndigoColor"/>
                     </tabBar>

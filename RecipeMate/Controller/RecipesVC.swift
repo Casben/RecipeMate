@@ -31,6 +31,7 @@ class RecipesVC: UIViewController {
         if segue.identifier == Constants.Segues.addRecipe {
             let destination = segue.destination as! AddRecipeVC
             destination.delegate = self
+            destination.category = recipeCategory
         }
     }
     
@@ -68,9 +69,8 @@ extension RecipesVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func configureCell(_ cell: RecipeCell, indexPath: IndexPath) {
-        let category = controller.object(at: indexPath)
-            let recipe = category
-            cell.configureCell(recipe)
+        let recipe = controller.object(at: indexPath)
+        cell.configureCell(recipe)
     }
 }
 
@@ -101,6 +101,33 @@ extension RecipesVC: NSFetchedResultsControllerDelegate {
         
     }
     
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case.insert:
+            if let indexpath = newIndexPath {
+                tableView.insertRows(at: [indexpath], with: .fade)
+            }
+        case.delete:
+            if let indexpath = indexPath {
+                tableView.deleteRows(at: [indexpath], with: .fade)
+            }
+        case.update:
+            if let indexpath = indexPath {
+                let cell = tableView.cellForRow(at: indexpath) as! RecipeCell
+                configureCell(cell, indexPath: indexpath)
+                
+            }
+        case.move:
+            if let indexpath = indexPath {
+                tableView.insertRows(at: [indexpath], with: .fade)
+            }
+            
+        @unknown default:
+            break
+        }
+    }
+
+    
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.beginUpdates()
     }
@@ -111,6 +138,11 @@ extension RecipesVC: NSFetchedResultsControllerDelegate {
 }
 
 extension RecipesVC: AddRecipeVCDelegate {
+    
+    func recipeCreated(_ recipe: Recipe) {
+        dismiss(animated: true)
+    }
+    
     func cancelButtonTapped() {
         dismiss(animated: true)
     }
