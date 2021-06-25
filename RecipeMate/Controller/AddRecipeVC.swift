@@ -21,6 +21,10 @@ class AddRecipeVC: UIViewController {
     var controller: NSFetchedResultsController<Ingredient>!
     let viewModel = IngredientsViewModel()
     weak var delegate: AddRecipeVCDelegate?
+    
+    var ingredientsList = [Ingredient]()
+    var selectedIngredients = [Ingredient]()
+    var isSelectedForRecipe = [Bool]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +39,7 @@ class AddRecipeVC: UIViewController {
         saveRecipeButton.layer.cornerRadius = 10
         tableView.layer.cornerRadius = 10
     }
+    
     
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
         delegate?.cancelButtonTapped()
@@ -58,8 +63,34 @@ extension AddRecipeVC: UITableViewDelegate, UITableViewDataSource {
         return 0
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+//        let ingredient = ingredientsList[indexPath.row]
+//        ingredient.isSelectedForRecipe = true
+//        selectedIngredients.append(ingredient)
+        ingredientsList[indexPath.row].isSelectedForRecipe = true
+        print("selected index is \(indexPath)")
+        cell?.accessoryType = .checkmark
+        
+        print("selectedIngredients count is \(selectedIngredients.count)")
+        
+        
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+//        let ingredient = ingredientsList[indexPath.row]
+//        ingredient.isSelectedForRecipe = false
+//        selectedIngredients.remove(at: selectedIngredients.count - indexPath.row - 1)
+        ingredientsList[indexPath.row].isSelectedForRecipe = false
+        cell?.accessoryType = .none
+    }
+    
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIds.ingredient, for: indexPath) as? IngredientCell else { return UITableViewCell()}
+        
         configureCell(cell, indexPath: indexPath)
         return cell
     }
@@ -69,8 +100,14 @@ extension AddRecipeVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func configureCell(_ cell: IngredientCell, indexPath: IndexPath) {
-        let ingredient = controller.object(at: indexPath)
+        let ingredient = ingredientsList[indexPath.row]
         cell.configureCell(ingredient)
+        
+        if ingredient.isSelectedForRecipe {
+            cell.accessoryType = .checkmark
+        } else {
+            cell.accessoryType = .none
+        }
     }
 }
 
@@ -95,7 +132,11 @@ extension AddRecipeVC: NSFetchedResultsControllerDelegate {
         
         if controller.fetchedObjects?.count == 0 {
             viewModel.generateIngredients()
+            
         }
+        
+        ingredientsList = controller.fetchedObjects ?? [Ingredient]()
+        
     }
     
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {

@@ -19,6 +19,7 @@ class IngredientCell: UITableViewCell {
         
         ingredientImageView.layer.cornerRadius = 10
         materialView.layer.cornerRadius = 10
+        tintColor = .systemIndigo
     }
-
+    
 }
