@@ -22,8 +22,11 @@ class AddRecipeVC: UIViewController {
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var instructionsTextField: UITextField!
     @IBOutlet weak var prepTimeTextField: UITextField!
+    @IBOutlet weak var imageThumbView: UIImageView!
     
     var controller: NSFetchedResultsController<Ingredient>!
+    let imagePicker = UIImagePickerController()
+    
     let ingredientsViewModel = IngredientsViewModel()
     var viewModel = AddRecipeViewModel()
     
@@ -42,16 +45,24 @@ class AddRecipeVC: UIViewController {
     func configure() {
         tableView.delegate = self
         tableView.dataSource = self
+        imagePicker.delegate = self
+        
         initializeIngredients()
+        
         addRecipeView.layer.cornerRadius = 10
         saveRecipeButton.layer.cornerRadius = 10
         tableView.layer.cornerRadius = 10
+        imageThumbView.layer.cornerRadius = imageThumbView.frame.width / 2
         saveRecipeButton.isEnabled = false
     }
     
     
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
         delegate?.cancelButtonTapped()
+    }
+    
+    @IBAction func addImageButtonTapped(_ sender: UIButton) {
+        present(imagePicker, animated: true)
     }
     
     @IBAction func textFieldDidChange(_ sender: UITextField) {
@@ -71,6 +82,7 @@ class AddRecipeVC: UIViewController {
         _ = ingredientsList.map { ingredient in
             if ingredient.isSelectedForRecipe {
                 selectedIngredients.append(ingredient)
+                ingredient.isSelectedForRecipe = false
             } 
         }
         
@@ -80,7 +92,8 @@ class AddRecipeVC: UIViewController {
         createdRecipe.instructions = instructionsTextField.text
         createdRecipe.prepTime = prepTimeTextField.text
         createdRecipe.category = category
-        createdRecipe.image = UIImage(named: "placeholder")
+        createdRecipe.image = imageThumbView.image ?? UIImage(named: "placeholder")
+        createdRecipe.ingredients = NSSet(array: selectedIngredients)
         Constants.appDelegate.saveContext()
         delegate?.recipeCreated(createdRecipe)
     }
@@ -154,6 +167,15 @@ extension AddRecipeVC: UITableViewDelegate, UITableViewDataSource {
         } else {
             cell.accessoryType = .none
         }
+    }
+}
+
+extension AddRecipeVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[.originalImage] as? UIImage {
+            imageThumbView.image = image
+        }
+        picker.dismiss(animated: true)
     }
 }
 

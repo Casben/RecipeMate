@@ -219,6 +219,9 @@
                                         </constraints>
                                         <color key="tintColor" systemColor="systemIndigoColor"/>
                                         <state key="normal" image="plusphoto"/>
+                                        <connections>
+                                            <action selector="addImageButtonTapped:" destination="BXP-mS-9CV" eventType="touchUpInside" id="OcO-i6-zRP"/>
+                                        </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Recipe Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BqB-sf-oqf">
                                         <rect key="frame" x="118" y="8" width="236" height="34"/>
@@ -332,13 +335,22 @@
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="NO"/>
                                         </userDefinedRuntimeAttributes>
                                     </tableView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LYD-Y2-ItU">
+                                        <rect key="frame" x="8" y="8" width="90" height="90"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="90" id="RYq-Ud-TIr"/>
+                                            <constraint firstAttribute="width" constant="90" id="uPc-dh-sR9"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="mdx-Go-9T8" firstAttribute="top" secondItem="Tn3-Yt-tPm" secondAttribute="bottom" constant="10" id="9s4-u9-Yt2"/>
                                     <constraint firstItem="25R-RY-PEA" firstAttribute="centerX" secondItem="eN3-C4-JsW" secondAttribute="centerX" id="DFW-Nq-dA8"/>
                                     <constraint firstItem="XQh-Zb-1kS" firstAttribute="top" secondItem="2t8-Zw-Oe4" secondAttribute="top" constant="8" id="Db3-od-dPV"/>
+                                    <constraint firstItem="LYD-Y2-ItU" firstAttribute="centerX" secondItem="XQh-Zb-1kS" secondAttribute="centerX" id="LLY-6e-Hlo"/>
                                     <constraint firstAttribute="trailing" secondItem="eN3-C4-JsW" secondAttribute="trailing" constant="20" id="M4c-ll-6lG"/>
+                                    <constraint firstItem="LYD-Y2-ItU" firstAttribute="centerY" secondItem="XQh-Zb-1kS" secondAttribute="centerY" id="O0z-z1-2b2"/>
                                     <constraint firstItem="eN3-C4-JsW" firstAttribute="top" secondItem="mdx-Go-9T8" secondAttribute="bottom" constant="10" id="R4c-7E-AuI"/>
                                     <constraint firstAttribute="trailing" secondItem="mdx-Go-9T8" secondAttribute="trailing" constant="20" id="RUP-Hw-FUb"/>
                                     <constraint firstItem="eN3-C4-JsW" firstAttribute="leading" secondItem="2t8-Zw-Oe4" secondAttribute="leading" constant="20" id="S0i-7Y-gXE"/>
@@ -394,6 +406,7 @@
                     <connections>
                         <outlet property="addRecipeView" destination="2t8-Zw-Oe4" id="3RJ-WK-ms1"/>
                         <outlet property="descriptionTextField" destination="Tn3-Yt-tPm" id="oD9-Rj-rur"/>
+                        <outlet property="imageThumbView" destination="LYD-Y2-ItU" id="adJ-0W-DLM"/>
                         <outlet property="instructionsTextField" destination="eN3-C4-JsW" id="HEk-m4-Yd0"/>
                         <outlet property="prepTimeTextField" destination="25R-RY-PEA" id="P7g-9Z-nu4"/>
                         <outlet property="recipeNameTextField" destination="BqB-sf-oqf" id="jVI-YK-xEY"/>
