@@ -104,7 +104,7 @@
                                 <rect key="frame" x="0.0" y="140" width="414" height="673"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeCell" rowHeight="100" id="NkR-wZ-tz6" userLabel="RecipeCell" customClass="RecipeCell" customModule="RecipeMate" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="RecipeCell" rowHeight="100" id="NkR-wZ-tz6" userLabel="RecipeCell" customClass="RecipeCell" customModule="RecipeMate" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="24.5" width="414" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NkR-wZ-tz6" id="SnA-dk-NWD">
@@ -171,12 +171,13 @@
                             <color key="tintColor" systemColor="systemIndigoColor"/>
                             <connections>
                                 <action selector="addRecipeButtonTapped:" destination="8Z0-Jj-5CM" id="an8-Hu-l0V"/>
+                                <segue destination="BXP-mS-9CV" kind="presentation" identifier="AddRecipeSegue" modalPresentationStyle="fullScreen" id="TQm-XK-NRp"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="yrB-TB-02b" id="LdF-bg-3W0"/>
-                        <segue destination="BXP-mS-9CV" kind="presentation" identifier="AddRecipeSegue" modalPresentationStyle="fullScreen" id="QaC-rz-3WZ"/>
+                        <segue destination="BXP-mS-9CV" kind="presentation" identifier="EditRecipeSegue" modalPresentationStyle="fullScreen" id="QaC-rz-3WZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n0J-Iw-mjC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -277,7 +278,7 @@
                                         </connections>
                                     </textField>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mdx-Go-9T8">
-                                        <rect key="frame" x="20" y="112" width="334" height="342"/>
+                                        <rect key="frame" x="20" y="142" width="334" height="312"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="IngredientCell" rowHeight="100" id="AYT-Gv-5PS" customClass="IngredientCell" customModule="RecipeMate" customModuleProvider="target">
@@ -342,10 +343,17 @@
                                             <constraint firstAttribute="width" constant="90" id="uPc-dh-sR9"/>
                                         </constraints>
                                     </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to add ingredients:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ht8-22-Ppt">
+                                        <rect key="frame" x="111" y="110" width="152" height="19"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="mdx-Go-9T8" firstAttribute="top" secondItem="Tn3-Yt-tPm" secondAttribute="bottom" constant="10" id="9s4-u9-Yt2"/>
+                                    <constraint firstItem="ht8-22-Ppt" firstAttribute="centerX" secondItem="2t8-Zw-Oe4" secondAttribute="centerX" id="4Lh-jP-DGe"/>
+                                    <constraint firstItem="mdx-Go-9T8" firstAttribute="top" secondItem="Tn3-Yt-tPm" secondAttribute="bottom" constant="40" id="9s4-u9-Yt2"/>
                                     <constraint firstItem="25R-RY-PEA" firstAttribute="centerX" secondItem="eN3-C4-JsW" secondAttribute="centerX" id="DFW-Nq-dA8"/>
                                     <constraint firstItem="XQh-Zb-1kS" firstAttribute="top" secondItem="2t8-Zw-Oe4" secondAttribute="top" constant="8" id="Db3-od-dPV"/>
                                     <constraint firstItem="LYD-Y2-ItU" firstAttribute="centerX" secondItem="XQh-Zb-1kS" secondAttribute="centerX" id="LLY-6e-Hlo"/>
@@ -361,6 +369,7 @@
                                     <constraint firstItem="mdx-Go-9T8" firstAttribute="leading" secondItem="2t8-Zw-Oe4" secondAttribute="leading" constant="20" id="ivw-wI-lrz"/>
                                     <constraint firstItem="eN3-C4-JsW" firstAttribute="centerX" secondItem="2t8-Zw-Oe4" secondAttribute="centerX" id="jIt-9y-eyT"/>
                                     <constraint firstItem="Tn3-Yt-tPm" firstAttribute="trailing" secondItem="BqB-sf-oqf" secondAttribute="trailing" id="kTv-Y8-XkQ"/>
+                                    <constraint firstItem="ht8-22-Ppt" firstAttribute="top" secondItem="Tn3-Yt-tPm" secondAttribute="bottom" constant="8" symbolic="YES" id="kYL-9q-s5M"/>
                                     <constraint firstItem="BqB-sf-oqf" firstAttribute="leading" secondItem="XQh-Zb-1kS" secondAttribute="trailing" constant="20" id="p1K-88-OfZ"/>
                                     <constraint firstAttribute="bottom" secondItem="eN3-C4-JsW" secondAttribute="bottom" constant="70" id="qS2-tk-gF0"/>
                                     <constraint firstItem="Tn3-Yt-tPm" firstAttribute="top" secondItem="BqB-sf-oqf" secondAttribute="bottom" constant="20" id="t3U-bN-cvZ"/>
@@ -416,7 +425,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OjF-rS-VHM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3640.579710144928" y="84.375"/>
+            <point key="canvasLocation" x="3709" y="88"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="91P-pe-ric">
@@ -577,6 +586,9 @@
             <point key="canvasLocation" x="1005.7971014492755" y="811.60714285714278"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="TQm-XK-NRp"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="book" catalog="system" width="128" height="102"/>
         <image name="leaf" catalog="system" width="128" height="109"/>

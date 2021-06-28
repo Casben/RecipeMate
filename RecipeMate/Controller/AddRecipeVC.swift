@@ -4,7 +4,6 @@
 //
 //  Created by Herbert Dodge on 6/24/21.
 //
-
 import UIKit
 import CoreData
 
@@ -83,7 +82,7 @@ class AddRecipeVC: UIViewController {
             if ingredient.isSelectedForRecipe {
                 selectedIngredients.append(ingredient)
                 ingredient.isSelectedForRecipe = false
-            } 
+            }
         }
         
         let createdRecipe = Recipe(context: Constants.context)

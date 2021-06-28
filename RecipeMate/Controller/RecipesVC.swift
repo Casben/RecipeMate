@@ -4,7 +4,6 @@
 //
 //  Created by Herbert Dodge on 6/23/21.
 //
-
 import UIKit
 import CoreData
 
@@ -28,9 +27,10 @@ class RecipesVC: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as! AddRecipeVC
+        destination.delegate = self
+        
         if segue.identifier == Constants.Segues.addRecipe {
-            let destination = segue.destination as! AddRecipeVC
-            destination.delegate = self
             destination.category = recipeCategory
         }
     }
@@ -140,7 +140,6 @@ extension RecipesVC: NSFetchedResultsControllerDelegate {
 extension RecipesVC: AddRecipeVCDelegate {
     
     func recipeCreated(_ recipe: Recipe) {
-        
         dismiss(animated: true)
     }
     
