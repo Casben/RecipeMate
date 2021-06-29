@@ -56,6 +56,7 @@ class AddRecipeVC: UIViewController {
         saveRecipeButton.isEnabled = false
         
         if recipeToEdit != nil {
+            print("recipe is")
             print(recipeToEdit)
         }
     }
@@ -102,6 +103,10 @@ class AddRecipeVC: UIViewController {
         delegate?.recipeCreated(createdRecipe)
     }
     
+    func prepareRecipeToBeEdited() {
+        
+    }
+    
     func checkFormStatus() {
         if viewModel.formIsValid {
             saveRecipeButton.isEnabled = true
@@ -132,9 +137,7 @@ extension AddRecipeVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
-//        let ingredient = ingredientsList[indexPath.row]
-//        ingredient.isSelectedForRecipe = true
-//        selectedIngredients.append(ingredient)
+
         ingredientsList[indexPath.row].isSelectedForRecipe = true
         cell?.accessoryType = .checkmark
         
@@ -142,9 +145,6 @@ extension AddRecipeVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
-//        let ingredient = ingredientsList[indexPath.row]
-//        ingredient.isSelectedForRecipe = false
-//        selectedIngredients.remove(at: selectedIngredients.count - indexPath.row - 1)
         ingredientsList[indexPath.row].isSelectedForRecipe = false
         cell?.accessoryType = .none
     }
@@ -165,6 +165,17 @@ extension AddRecipeVC: UITableViewDelegate, UITableViewDataSource {
     func configureCell(_ cell: IngredientCell, indexPath: IndexPath) {
         let ingredient = ingredientsList[indexPath.row]
         cell.configureCell(ingredient)
+        
+        if let recipeToEdit = recipeToEdit {
+            if let recipeIngredients = recipeToEdit.ingredients?.allObjects as? [Ingredient] {
+                _ = recipeIngredients.map({ recipeIngredient in
+                    if ingredient.name == recipeIngredient.name {
+                        ingredient.isSelectedForRecipe = true
+                    }
+                })
+            }
+           
+        }
         
         if ingredient.isSelectedForRecipe {
             cell.accessoryType = .checkmark
