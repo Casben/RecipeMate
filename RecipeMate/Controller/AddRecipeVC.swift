@@ -156,7 +156,6 @@ extension AddRecipeVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         ingredientsList[indexPath.row].isSelectedForRecipe = true
-        
         cell?.accessoryType = .checkmark
         
     }
@@ -189,6 +188,7 @@ extension AddRecipeVC: UITableViewDelegate, UITableViewDataSource {
                 _ = recipeIngredients.map({ recipeIngredient in
                     if ingredient.name == recipeIngredient.name {
                         ingredient.isSelectedForRecipe = true
+                        tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
                     }
                 })
             }
