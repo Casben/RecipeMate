@@ -90,7 +90,6 @@ class AddRecipeVC: UIViewController {
            
         } else {
             createdRecipe = Recipe(context: Constants.context)
-            print("block hit")
         }
         
         _ = ingredientsList.map { ingredient in
@@ -110,7 +109,6 @@ class AddRecipeVC: UIViewController {
         
         Constants.appDelegate.saveContext()
         delegate?.recipeCreated(createdRecipe)
-//        navigationController?.popViewController(animated: true)
     }
     
     func prepareRecipeToBeEdited() {
@@ -123,6 +121,8 @@ class AddRecipeVC: UIViewController {
         prepTimeTextField.text = recipeToEdit?.prepTime
         
         imageThumbView.image = recipeToEdit?.image as? UIImage
+        
+        viewModel.restoreState(recipeToEdit!)
     }
     
     func checkFormStatus() {
@@ -155,8 +155,8 @@ extension AddRecipeVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
-
         ingredientsList[indexPath.row].isSelectedForRecipe = true
+        
         cell?.accessoryType = .checkmark
         
     }
