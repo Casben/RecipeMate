@@ -419,7 +419,7 @@
                         <outlet property="instructionsTextField" destination="eN3-C4-JsW" id="HEk-m4-Yd0"/>
                         <outlet property="prepTimeTextField" destination="25R-RY-PEA" id="P7g-9Z-nu4"/>
                         <outlet property="recipeNameTextField" destination="BqB-sf-oqf" id="jVI-YK-xEY"/>
-                        <outlet property="saveRecipeButton" destination="d50-lR-4RH" id="v9v-Ml-6fv"/>
+                        <outlet property="saveAndEditRecipeButton" destination="d50-lR-4RH" id="v9v-Ml-6fv"/>
                         <outlet property="tableView" destination="mdx-Go-9T8" id="RG0-9V-VOe"/>
                     </connections>
                 </viewController>

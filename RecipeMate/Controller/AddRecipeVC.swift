@@ -15,7 +15,7 @@ protocol AddRecipeVCDelegate: AnyObject {
 class AddRecipeVC: UIViewController {
     
     @IBOutlet weak var addRecipeView: UIView!
-    @IBOutlet weak var saveRecipeButton: UIButton!
+    @IBOutlet weak var saveAndEditRecipeButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var recipeNameTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
@@ -50,14 +50,13 @@ class AddRecipeVC: UIViewController {
         initializeIngredients()
         
         addRecipeView.layer.cornerRadius = 10
-        saveRecipeButton.layer.cornerRadius = 10
+        saveAndEditRecipeButton.layer.cornerRadius = 10
         tableView.layer.cornerRadius = 10
         imageThumbView.layer.cornerRadius = imageThumbView.frame.width / 2
-        saveRecipeButton.isEnabled = false
+        saveAndEditRecipeButton.isEnabled = false
         
         if recipeToEdit != nil {
-            print("recipe is")
-            print(recipeToEdit)
+            prepareRecipeToBeEdited()
         }
     }
     
@@ -84,6 +83,16 @@ class AddRecipeVC: UIViewController {
     }
     
     @IBAction func saveButtonTapped(_ sender: UIButton) {
+        var createdRecipe: Recipe!
+        
+        if recipeToEdit != nil {
+            createdRecipe = recipeToEdit
+           
+        } else {
+            createdRecipe = Recipe(context: Constants.context)
+            print("block hit")
+        }
+        
         _ = ingredientsList.map { ingredient in
             if ingredient.isSelectedForRecipe {
                 selectedIngredients.append(ingredient)
@@ -91,7 +100,6 @@ class AddRecipeVC: UIViewController {
             }
         }
         
-        let createdRecipe = Recipe(context: Constants.context)
         createdRecipe.name = recipeNameTextField.text
         createdRecipe.details = descriptionTextField.text
         createdRecipe.instructions = instructionsTextField.text
@@ -99,21 +107,31 @@ class AddRecipeVC: UIViewController {
         createdRecipe.category = category
         createdRecipe.image = imageThumbView.image ?? UIImage(named: "placeholder")
         createdRecipe.ingredients = NSSet(array: selectedIngredients)
+        
         Constants.appDelegate.saveContext()
         delegate?.recipeCreated(createdRecipe)
+//        navigationController?.popViewController(animated: true)
     }
     
     func prepareRecipeToBeEdited() {
+        saveAndEditRecipeButton.isEnabled = true
+        saveAndEditRecipeButton.backgroundColor = .systemIndigo
         
+        recipeNameTextField.text = recipeToEdit?.name
+        descriptionTextField.text = recipeToEdit?.details
+        instructionsTextField.text = recipeToEdit?.instructions
+        prepTimeTextField.text = recipeToEdit?.prepTime
+        
+        imageThumbView.image = recipeToEdit?.image as? UIImage
     }
     
     func checkFormStatus() {
         if viewModel.formIsValid {
-            saveRecipeButton.isEnabled = true
-            saveRecipeButton.backgroundColor = .systemIndigo
+            saveAndEditRecipeButton.isEnabled = true
+            saveAndEditRecipeButton.backgroundColor = .systemIndigo
         } else {
-            saveRecipeButton.isEnabled = false
-            saveRecipeButton.backgroundColor = .lightGray
+            saveAndEditRecipeButton.isEnabled = false
+            saveAndEditRecipeButton.backgroundColor = .lightGray
         }
     }
 
