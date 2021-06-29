@@ -35,6 +35,7 @@ class AddRecipeVC: UIViewController {
     var ingredientsList = [Ingredient]()
     var selectedIngredients = [Ingredient]()
     var isSelectedForRecipe = [Bool]()
+    var recipeToEdit: Recipe?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +54,10 @@ class AddRecipeVC: UIViewController {
         tableView.layer.cornerRadius = 10
         imageThumbView.layer.cornerRadius = imageThumbView.frame.width / 2
         saveRecipeButton.isEnabled = false
+        
+        if recipeToEdit != nil {
+            print(recipeToEdit)
+        }
     }
     
     

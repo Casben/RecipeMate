@@ -30,6 +30,12 @@ class RecipesVC: UIViewController {
         let destination = segue.destination as! AddRecipeVC
         destination.delegate = self
         
+        if segue.identifier == Constants.Segues.editRecipe {
+            if let recipe = sender as? Recipe {
+                destination.recipeToEdit = recipe
+            }
+        }
+        
         if segue.identifier == Constants.Segues.addRecipe {
             destination.category = recipeCategory
         }
