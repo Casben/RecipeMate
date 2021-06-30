@@ -138,7 +138,6 @@ extension RecipesVC: NSFetchedResultsControllerDelegate {
         }
     }
 
-    
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.beginUpdates()
     }
@@ -149,12 +148,12 @@ extension RecipesVC: NSFetchedResultsControllerDelegate {
 }
 
 extension RecipesVC: AddRecipeVCDelegate {
+    func recipeDuplicated(_ recipe: Recipe) {
+        
+    }
     
-    func recipeCreated(_ recipe: Recipe) {
+    func recipeChangesComplete() {
         dismiss(animated: true)
     }
     
-    func cancelButtonTapped() {
-        dismiss(animated: true)
-    }
 }

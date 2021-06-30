@@ -206,6 +206,12 @@
                                                 <action selector="cancelButtonTapped:" destination="BXP-mS-9CV" id="mHQ-Lm-4P0"/>
                                             </connections>
                                         </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" image="more-options-2" id="pw0-9a-VUX">
+                                            <color key="tintColor" systemColor="systemIndigoColor"/>
+                                            <connections>
+                                                <action selector="optionsButtonTapped:" destination="BXP-mS-9CV" id="EqK-Is-vIm"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -417,6 +423,7 @@
                         <outlet property="descriptionTextField" destination="Tn3-Yt-tPm" id="oD9-Rj-rur"/>
                         <outlet property="imageThumbView" destination="LYD-Y2-ItU" id="adJ-0W-DLM"/>
                         <outlet property="instructionsTextField" destination="eN3-C4-JsW" id="HEk-m4-Yd0"/>
+                        <outlet property="optionsButton" destination="pw0-9a-VUX" id="W9F-eq-VQ7"/>
                         <outlet property="prepTimeTextField" destination="25R-RY-PEA" id="P7g-9Z-nu4"/>
                         <outlet property="recipeNameTextField" destination="BqB-sf-oqf" id="jVI-YK-xEY"/>
                         <outlet property="saveAndEditRecipeButton" destination="d50-lR-4RH" id="v9v-Ml-6fv"/>
@@ -592,6 +599,7 @@
     <resources>
         <image name="book" catalog="system" width="128" height="102"/>
         <image name="leaf" catalog="system" width="128" height="109"/>
+        <image name="more-options-2" width="32" height="32"/>
         <image name="placeholder" width="50" height="50"/>
         <image name="plusphoto" width="150" height="150"/>
         <systemColor name="systemBackgroundColor">

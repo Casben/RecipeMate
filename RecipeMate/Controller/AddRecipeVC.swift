@@ -8,14 +8,15 @@ import UIKit
 import CoreData
 
 protocol AddRecipeVCDelegate: AnyObject {
-    func cancelButtonTapped()
-    func recipeCreated(_ recipe: Recipe)
+    func recipeChangesComplete()
+    func recipeDuplicated(_ recipe: Recipe)
 }
 
 class AddRecipeVC: UIViewController {
     
     @IBOutlet weak var addRecipeView: UIView!
     @IBOutlet weak var saveAndEditRecipeButton: UIButton!
+    @IBOutlet weak var optionsButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var recipeNameTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
@@ -54,17 +55,80 @@ class AddRecipeVC: UIViewController {
         tableView.layer.cornerRadius = 10
         imageThumbView.layer.cornerRadius = imageThumbView.frame.width / 2
         saveAndEditRecipeButton.isEnabled = false
+        optionsButton.isEnabled = false
         
         if recipeToEdit != nil {
             prepareRecipeToBeEdited()
         }
     }
     
-    
-    @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
-        delegate?.cancelButtonTapped()
+    func extractRecipeToEditIngredients() -> [Ingredient] {
+        if let recipeIngredients = recipeToEdit?.ingredients?.allObjects as? [Ingredient] {
+            return recipeIngredients
+        }
+        return Array<Ingredient>()
     }
     
+    func deleteRecipe() {
+        if recipeToEdit != nil {
+            let recipeIngredients = extractRecipeToEditIngredients()
+            _ = recipeIngredients.map({ $0.isSelectedForRecipe = false })
+            Constants.context.delete(recipeToEdit!)
+            Constants.appDelegate.saveContext()
+        }
+    }
+    
+    func prepareRecipeToBeSaved(with createdRecipe: Recipe) {
+        createdRecipe.name = recipeNameTextField.text
+        createdRecipe.details = descriptionTextField.text
+        createdRecipe.instructions = instructionsTextField.text
+        createdRecipe.prepTime = prepTimeTextField.text
+        createdRecipe.category = category
+        createdRecipe.image = imageThumbView.image ?? UIImage(named: "placeholder")
+        createdRecipe.ingredients = NSSet(array: selectedIngredients)
+        
+        if recipeToEdit != nil {
+            createdRecipe.name = (recipeToEdit?.name)! + " - Copy"
+            createdRecipe.details = recipeToEdit?.details
+            createdRecipe.instructions = recipeToEdit?.instructions
+            createdRecipe.prepTime = recipeToEdit?.prepTime
+            createdRecipe.category = recipeToEdit?.category
+            createdRecipe.image = recipeToEdit?.image as? UIImage
+            createdRecipe.ingredients = recipeToEdit?.ingredients
+        }
+        
+    }
+    
+    func prepareRecipeToBeDuplicated() {
+        let duplicateRecipe: Recipe = Recipe(context: Constants.context)
+        prepareRecipeToBeSaved(with: duplicateRecipe)
+        Constants.appDelegate.saveContext()
+        delegate?.recipeDuplicated(duplicateRecipe)
+    }
+    
+    
+    @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
+        delegate?.recipeChangesComplete()
+    }
+    
+    @IBAction func optionsButtonTapped(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: "Options", message: "What would you like to do?", preferredStyle: .actionSheet)
+        
+        let copyRecipe = UIAlertAction(title: "Copy Recipe", style: .default) { _ in
+            self.prepareRecipeToBeDuplicated()
+            Constants.appDelegate.saveContext()
+            self.delegate?.recipeChangesComplete()
+        }
+        
+        let delete = UIAlertAction(title: "Delete Recipe", style: .destructive) { _ in
+            self.deleteRecipe()
+            self.delegate?.recipeChangesComplete()
+        }
+        alert.addAction(copyRecipe)
+        alert.addAction(delete)
+        
+        present(alert, animated: true, completion: nil)
+    }
     @IBAction func addImageButtonTapped(_ sender: UIButton) {
         present(imagePicker, animated: true)
     }
@@ -99,21 +163,16 @@ class AddRecipeVC: UIViewController {
             }
         }
         
-        createdRecipe.name = recipeNameTextField.text
-        createdRecipe.details = descriptionTextField.text
-        createdRecipe.instructions = instructionsTextField.text
-        createdRecipe.prepTime = prepTimeTextField.text
-        createdRecipe.category = category
-        createdRecipe.image = imageThumbView.image ?? UIImage(named: "placeholder")
-        createdRecipe.ingredients = NSSet(array: selectedIngredients)
+        prepareRecipeToBeSaved(with: createdRecipe)
         
         Constants.appDelegate.saveContext()
-        delegate?.recipeCreated(createdRecipe)
+        delegate?.recipeChangesComplete()
     }
     
     func prepareRecipeToBeEdited() {
         saveAndEditRecipeButton.isEnabled = true
         saveAndEditRecipeButton.backgroundColor = .systemIndigo
+        optionsButton.isEnabled = true
         
         recipeNameTextField.text = recipeToEdit?.name
         descriptionTextField.text = recipeToEdit?.details
@@ -183,16 +242,14 @@ extension AddRecipeVC: UITableViewDelegate, UITableViewDataSource {
         let ingredient = ingredientsList[indexPath.row]
         cell.configureCell(ingredient)
         
-        if let recipeToEdit = recipeToEdit {
-            if let recipeIngredients = recipeToEdit.ingredients?.allObjects as? [Ingredient] {
-                _ = recipeIngredients.map({ recipeIngredient in
-                    if ingredient.name == recipeIngredient.name {
-                        ingredient.isSelectedForRecipe = true
-                        tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
-                    }
-                })
-            }
-           
+        if recipeToEdit != nil {
+            let recipeIngredients = extractRecipeToEditIngredients()
+            _ = recipeIngredients.map({ recipeIngredient in
+                if ingredient.name == recipeIngredient.name {
+                    ingredient.isSelectedForRecipe = true
+                    tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+                }
+            })
         }
         
         if ingredient.isSelectedForRecipe {
@@ -235,9 +292,7 @@ extension AddRecipeVC: NSFetchedResultsControllerDelegate {
             ingredientsViewModel.generateIngredients()
             
         }
-        
         ingredientsList = controller.fetchedObjects ?? [Ingredient]()
-        
     }
     
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
