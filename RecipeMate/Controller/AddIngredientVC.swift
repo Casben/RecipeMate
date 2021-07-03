@@ -48,6 +48,11 @@ class AddIngredientVC: UIViewController {
         ingredientNameTextField.text = ingredientToEdit?.name
     }
     
+    func prepareIngredientToBeSaved(with createdIngredient: Ingredient) {
+        createdIngredient.name = ingredientNameTextField.text
+        createdIngredient.image = ingredientImageView.image
+    }
+    
     func checkFormStatus() {
         if viewModel.formIsValid {
             saveAndEditIngredientButton.isEnabled = true
@@ -63,7 +68,17 @@ class AddIngredientVC: UIViewController {
     }
     
     @IBAction func saveButtonTapped(_ sender: UIButton) {
+        var createdIngredient: Ingredient!
         
+        if ingredientToEdit != nil {
+            createdIngredient = ingredientToEdit
+        } else {
+            createdIngredient = Ingredient(context: Constants.context)
+        }
+        
+        prepareIngredientToBeSaved(with: createdIngredient)
+        Constants.appDelegate.saveContext()
+        delegate?.ingredientChangesComplete()
     }
     
     @IBAction func textFieldDidChange(_ sender: UITextField) {

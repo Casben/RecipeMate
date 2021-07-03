@@ -654,6 +654,7 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="saveButtonTapped:" destination="5kN-9B-hxa" eventType="touchUpInside" id="1gE-Z1-0Gn"/>
                                     <action selector="saveButtonTapped:" destination="BXP-mS-9CV" eventType="touchUpInside" id="Jlk-s2-M6d"/>
                                 </connections>
                             </button>

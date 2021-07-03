@@ -108,6 +108,32 @@ extension IngredientsListVC: NSFetchedResultsControllerDelegate {
         }
     }
     
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case.insert:
+            if let indexpath = newIndexPath {
+                tableView.insertRows(at: [indexpath], with: .fade)
+            }
+        case.delete:
+            if let indexpath = indexPath {
+                tableView.deleteRows(at: [indexpath], with: .fade)
+            }
+        case.update:
+            if let indexpath = indexPath {
+                let cell = tableView.cellForRow(at: indexpath) as! IngredientCell
+                configureCell(cell, indexPath: indexpath)
+                
+            }
+        case.move:
+            if let indexpath = indexPath {
+                tableView.insertRows(at: [indexpath], with: .fade)
+            }
+            
+        @unknown default:
+            break
+        }
+    }
+    
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.beginUpdates()
     }
