@@ -24,6 +24,7 @@ enum Constants {
         static let addRecipe = "AddRecipeSegue"
         static let editRecipe = "EditRecipeSegue"
         static let addIngredient = "AddIngredientSegue"
+        static let editIngredient = "EditIngredientSegue"
     }
     
     enum CategoryImage {

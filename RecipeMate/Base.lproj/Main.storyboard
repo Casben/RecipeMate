@@ -283,7 +283,7 @@
                                             <action selector="textFieldDidChange:" destination="BXP-mS-9CV" eventType="editingChanged" id="4r7-68-2Kl"/>
                                         </connections>
                                     </textField>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mdx-Go-9T8">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mdx-Go-9T8">
                                         <rect key="frame" x="20" y="142" width="334" height="312"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
@@ -482,11 +482,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tk4-zU-D0O">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tk4-zU-D0O">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientCell" rowHeight="100" id="ZNo-ty-e0t" customClass="IngredientCell" customModule="RecipeMate" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="IngredientCell" rowHeight="100" id="ZNo-ty-e0t" customClass="IngredientCell" customModule="RecipeMate" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="24.5" width="414" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZNo-ty-e0t" id="Ytk-zd-04C">
@@ -559,6 +559,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="tk4-zU-D0O" id="tiQ-00-KtT"/>
+                        <segue destination="5kN-9B-hxa" kind="presentation" identifier="EditIngredientSegue" modalPresentationStyle="fullScreen" id="d2j-c8-IYx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wj8-DU-9lr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -600,6 +601,9 @@
                                         </constraints>
                                         <color key="tintColor" systemColor="systemIndigoColor"/>
                                         <state key="normal" image="plusphoto"/>
+                                        <connections>
+                                            <action selector="addImageButtonTapped:" destination="5kN-9B-hxa" eventType="touchUpInside" id="UC7-Ka-F6C"/>
+                                        </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ingredient Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qgy-tD-jXI">
                                         <rect key="frame" x="20" y="380" width="334" height="50"/>
@@ -608,8 +612,11 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="textFieldDidChange:" destination="5kN-9B-hxa" eventType="editingChanged" id="43K-7G-AZw"/>
+                                        </connections>
                                     </textField>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DAA-Rb-ufX">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DAA-Rb-ufX">
                                         <rect key="frame" x="87" y="60" width="200" height="200"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="200" id="Ncb-mB-a4f"/>
@@ -669,7 +676,8 @@
                     <navigationItem key="navigationItem" id="x9O-bd-NQr"/>
                     <connections>
                         <outlet property="addIngredientView" destination="XOR-Mu-5oS" id="C2L-Ce-16e"/>
-                        <outlet property="imageThumbView" destination="DAA-Rb-ufX" id="29S-Ob-gVy"/>
+                        <outlet property="ingredientImageView" destination="DAA-Rb-ufX" id="29S-Ob-gVy"/>
+                        <outlet property="ingredientNameTextField" destination="Qgy-tD-jXI" id="CgJ-4u-CUT"/>
                         <outlet property="optionsButton" destination="q80-t7-bpp" id="CEz-VA-TG6"/>
                         <outlet property="saveAndAddIngredientButton" destination="O31-b1-B8U" id="ej7-Iz-RVs"/>
                         <outlet property="saveAndEditIngredientButton" destination="O31-b1-B8U" id="De6-mC-wuq"/>
@@ -716,6 +724,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="d2j-c8-IYx"/>
         <segue reference="TQm-XK-NRp"/>
     </inferredMetricsTieBreakers>
     <resources>

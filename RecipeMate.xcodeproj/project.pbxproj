@@ -14,6 +14,7 @@
 		CB19009E268B92D900354B83 /* Ingredient+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB190098268B92D900354B83 /* Ingredient+CoreDataClass.swift */; };
 		CB19009F268B92D900354B83 /* Ingredient+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB190099268B92D900354B83 /* Ingredient+CoreDataProperties.swift */; };
 		CB1900A12690C68000354B83 /* AddIngredientVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1900A02690C68000354B83 /* AddIngredientVC.swift */; };
+		CB1900A32690E7BB00354B83 /* AddIngredientViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1900A22690E7BB00354B83 /* AddIngredientViewModel.swift */; };
 		CB70CF7626793BDD0062A33A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB70CF7526793BDD0062A33A /* AppDelegate.swift */; };
 		CB70CF7826793BDD0062A33A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB70CF7726793BDD0062A33A /* SceneDelegate.swift */; };
 		CB70CF7D26793BDD0062A33A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB70CF7B26793BDD0062A33A /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 		CB190098268B92D900354B83 /* Ingredient+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ingredient+CoreDataClass.swift"; sourceTree = "<group>"; };
 		CB190099268B92D900354B83 /* Ingredient+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ingredient+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CB1900A02690C68000354B83 /* AddIngredientVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIngredientVC.swift; sourceTree = "<group>"; };
+		CB1900A22690E7BB00354B83 /* AddIngredientViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIngredientViewModel.swift; sourceTree = "<group>"; };
 		CB70CF7226793BDD0062A33A /* RecipeMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecipeMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB70CF7526793BDD0062A33A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB70CF7726793BDD0062A33A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				CB70CF9B268249BD0062A33A /* CategoriesViewModel.swift */,
 				CB70CFA326828DDE0062A33A /* IngredientsViewModel.swift */,
 				CB70CFAB26855B700062A33A /* AddRecipeViewModel.swift */,
+				CB1900A22690E7BB00354B83 /* AddIngredientViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 				CB70CF9326823D530062A33A /* CategoriesVC.swift in Sources */,
 				CB70CF9526823E090062A33A /* IngredientsListVC.swift in Sources */,
 				CB19009B268B92D900354B83 /* Recipe+CoreDataProperties.swift in Sources */,
+				CB1900A32690E7BB00354B83 /* AddIngredientViewModel.swift in Sources */,
 				CB70CF7626793BDD0062A33A /* AppDelegate.swift in Sources */,
 				CB19009C268B92D900354B83 /* Category+CoreDataClass.swift in Sources */,
 				CB70CFA8268395450062A33A /* RecipeCell.swift in Sources */,
