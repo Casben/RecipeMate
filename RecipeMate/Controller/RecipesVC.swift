@@ -28,16 +28,14 @@ class RecipesVC: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destination = segue.destination as! AddRecipeVC
+        destination.category = recipeCategory
         destination.delegate = self
         
         if segue.identifier == Constants.Segues.editRecipe {
             if let recipe = sender as? Recipe {
                 destination.recipeToEdit = recipe
+                
             }
-        }
-        
-        if segue.identifier == Constants.Segues.addRecipe {
-            destination.category = recipeCategory
         }
     }
     
@@ -68,6 +66,13 @@ extension RecipesVC: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIds.recipe, for: indexPath) as? RecipeCell else { return UITableViewCell() }
         configureCell(cell, indexPath: indexPath)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let objects = controller.fetchedObjects, objects.count > 0 {
+            let recipe = objects[indexPath.row]
+            performSegue(withIdentifier: Constants.Segues.editRecipe, sender: recipe)
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -133,7 +138,6 @@ extension RecipesVC: NSFetchedResultsControllerDelegate {
         }
     }
 
-    
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.beginUpdates()
     }
@@ -144,12 +148,12 @@ extension RecipesVC: NSFetchedResultsControllerDelegate {
 }
 
 extension RecipesVC: AddRecipeVCDelegate {
+    func recipeDuplicated(_ recipe: Recipe) {
+        
+    }
     
-    func recipeCreated(_ recipe: Recipe) {
+    func recipeChangesComplete() {
         dismiss(animated: true)
     }
     
-    func cancelButtonTapped() {
-        dismiss(animated: true)
-    }
 }

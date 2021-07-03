@@ -7,11 +7,7 @@
 
 import Foundation
 
-protocol AuthenticationProtocol {
-    var formIsValid: Bool { get }
-}
-
-struct AddRecipeViewModel: AuthenticationProtocol {
+struct AddRecipeViewModel {
     var recipeName: String?
     var descriptionName: String?
     var instructions: String?
@@ -19,5 +15,13 @@ struct AddRecipeViewModel: AuthenticationProtocol {
     
     var formIsValid: Bool {
         return recipeName?.isEmpty == false && descriptionName?.isEmpty == false && instructions?.isEmpty == false && prepTime?.isEmpty == false
+        
+    }
+    
+    mutating func restoreState(_ recipe: Recipe) {
+        recipeName = recipe.name
+        descriptionName = recipe.details
+        instructions = recipe.instructions
+        prepTime = recipe.prepTime
     }
 }

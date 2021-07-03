@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class IngredientsVC: UIViewController {
+class IngredientsListVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -25,10 +25,14 @@ class IngredientsVC: UIViewController {
         tableView.dataSource = self
         initializeIngredients()
     }
+    
+    @IBAction func addIngredientButtonTapped(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: Constants.Segues.addIngredient, sender: nil)
+    }
 
 }
 
-extension IngredientsVC: UITableViewDelegate, UITableViewDataSource {
+extension IngredientsListVC: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         if let sections = controller.sections {
             return sections.count
@@ -60,7 +64,7 @@ extension IngredientsVC: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension IngredientsVC: NSFetchedResultsControllerDelegate {
+extension IngredientsListVC: NSFetchedResultsControllerDelegate {
     
     func initializeIngredients() {
         let fetchRequest: NSFetchRequest<Ingredient> = Ingredient.fetchRequest()
