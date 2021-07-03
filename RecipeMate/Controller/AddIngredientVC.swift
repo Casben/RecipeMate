@@ -103,8 +103,10 @@ class AddIngredientVC: UIViewController {
             self.delegate?.ingredientChangesComplete()
         }
         
-        alert.addAction(delete)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
         
+        alert.addAction(delete)
+        alert.addAction(cancel)
         present(alert, animated: true, completion: nil)
     }
 

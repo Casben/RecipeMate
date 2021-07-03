@@ -123,8 +123,11 @@ class AddRecipeVC: UIViewController {
             self.deleteRecipe()
             self.delegate?.recipeChangesComplete()
         }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
         alert.addAction(copyRecipe)
         alert.addAction(delete)
+        alert.addAction(cancel)
         
         present(alert, animated: true, completion: nil)
     }
