@@ -122,10 +122,10 @@
 			children = (
 				CB70CF9226823D530062A33A /* CategoriesVC.swift */,
 				CB70CF9426823E090062A33A /* IngredientsListVC.swift */,
-				CB70CF9626823E210062A33A /* SearchVC.swift */,
-				CB70CFA526838F480062A33A /* RecipesVC.swift */,
-				CB70CFA92684F22C0062A33A /* AddRecipeVC.swift */,
 				CB1900A02690C68000354B83 /* AddIngredientVC.swift */,
+				CB70CF9626823E210062A33A /* SearchVC.swift */,
+				CB70CFA92684F22C0062A33A /* AddRecipeVC.swift */,
+				CB70CFA526838F480062A33A /* RecipesVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

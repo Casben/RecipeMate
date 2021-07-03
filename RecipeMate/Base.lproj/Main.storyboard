@@ -579,6 +579,9 @@
                                     <navigationItem title="Add Ingredient" largeTitleDisplayMode="always" id="vPH-Th-NLf">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="3r2-MY-Cbh">
                                             <color key="tintColor" systemColor="systemIndigoColor"/>
+                                            <connections>
+                                                <action selector="cancelButtonTapped:" destination="5kN-9B-hxa" id="BIb-MH-kIY"/>
+                                            </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" image="more-options-2" id="q80-t7-bpp">
                                             <color key="tintColor" systemColor="systemIndigoColor"/>
@@ -630,7 +633,7 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O31-b1-B8U">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O31-b1-B8U">
                                 <rect key="frame" x="20" y="802" width="374" height="60"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -667,7 +670,9 @@
                     <connections>
                         <outlet property="addIngredientView" destination="XOR-Mu-5oS" id="C2L-Ce-16e"/>
                         <outlet property="imageThumbView" destination="DAA-Rb-ufX" id="29S-Ob-gVy"/>
+                        <outlet property="optionsButton" destination="q80-t7-bpp" id="CEz-VA-TG6"/>
                         <outlet property="saveAndAddIngredientButton" destination="O31-b1-B8U" id="ej7-Iz-RVs"/>
+                        <outlet property="saveAndEditIngredientButton" destination="O31-b1-B8U" id="De6-mC-wuq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VUg-56-JPa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -8,6 +8,10 @@
 import UIKit
 import CoreData
 
+protocol AddAndEditIngredientDelegate: AnyObject {
+    func ingredientChangesComplete()
+}
+
 class IngredientsListVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
@@ -24,6 +28,11 @@ class IngredientsListVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         initializeIngredients()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as! AddIngredientVC
+        destination.delegate = self
     }
     
     @IBAction func addIngredientButtonTapped(_ sender: UIBarButtonItem) {
@@ -94,5 +103,11 @@ extension IngredientsListVC: NSFetchedResultsControllerDelegate {
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
+    }
+}
+
+extension IngredientsListVC: AddAndEditIngredientDelegate {
+    func ingredientChangesComplete() {
+        dismiss(animated: true, completion: nil)
     }
 }

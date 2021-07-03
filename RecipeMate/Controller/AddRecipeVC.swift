@@ -7,7 +7,7 @@
 import UIKit
 import CoreData
 
-protocol AddRecipeVCDelegate: AnyObject {
+protocol AddAndEditRecipeDelegate: AnyObject {
     func recipeChangesComplete()
     func recipeDuplicated(_ recipe: Recipe)
 }
@@ -30,7 +30,7 @@ class AddRecipeVC: UIViewController {
     let ingredientsViewModel = IngredientsViewModel()
     var viewModel = AddRecipeViewModel()
     
-    weak var delegate: AddRecipeVCDelegate?
+    weak var delegate: AddAndEditRecipeDelegate?
     
     var category: Category!
     var ingredientsList = [Ingredient]()

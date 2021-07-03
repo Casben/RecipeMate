@@ -147,7 +147,7 @@ extension RecipesVC: NSFetchedResultsControllerDelegate {
     }
 }
 
-extension RecipesVC: AddRecipeVCDelegate {
+extension RecipesVC: AddAndEditRecipeDelegate {
     func recipeDuplicated(_ recipe: Recipe) {
         
     }
