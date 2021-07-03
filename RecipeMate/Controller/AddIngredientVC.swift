@@ -63,6 +63,11 @@ class AddIngredientVC: UIViewController {
         }
     }
     
+    func deleteIngredient() {
+        Constants.context.delete(ingredientToEdit!)
+        Constants.appDelegate.saveContext()
+    }
+    
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
         delegate?.ingredientChangesComplete()
     }
@@ -88,6 +93,19 @@ class AddIngredientVC: UIViewController {
     
     @IBAction func addImageButtonTapped(_ sender: UIButton) {
         present(imagePicker, animated: true)
+    }
+    
+    @IBAction func optionsButtonTapped(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: "Options", message: "What would you like to do?", preferredStyle: .actionSheet)
+        
+        let delete = UIAlertAction(title: "Delete Ingredient", style: .destructive) { [unowned self] _ in
+            self.deleteIngredient()
+            self.delegate?.ingredientChangesComplete()
+        }
+        
+        alert.addAction(delete)
+        
+        present(alert, animated: true, completion: nil)
     }
 
 }

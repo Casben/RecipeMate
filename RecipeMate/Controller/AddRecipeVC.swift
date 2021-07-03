@@ -88,7 +88,6 @@ class AddRecipeVC: UIViewController {
         createdRecipe.ingredients = NSSet(array: selectedIngredients)
         
         if recipeToEdit != nil {
-            createdRecipe.name = (recipeToEdit?.name)! + " - Copy"
             createdRecipe.details = recipeToEdit?.details
             createdRecipe.instructions = recipeToEdit?.instructions
             createdRecipe.prepTime = recipeToEdit?.prepTime
@@ -102,6 +101,7 @@ class AddRecipeVC: UIViewController {
     func prepareRecipeToBeDuplicated() {
         let duplicateRecipe: Recipe = Recipe(context: Constants.context)
         prepareRecipeToBeSaved(with: duplicateRecipe)
+        duplicateRecipe.name = (recipeToEdit?.name)! + " - Copy"
         Constants.appDelegate.saveContext()
         delegate?.recipeDuplicated(duplicateRecipe)
     }

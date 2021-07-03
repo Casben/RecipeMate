@@ -586,6 +586,9 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" image="more-options-2" id="q80-t7-bpp">
                                             <color key="tintColor" systemColor="systemIndigoColor"/>
+                                            <connections>
+                                                <action selector="optionsButtonTapped:" destination="5kN-9B-hxa" id="rks-ip-uXv"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
