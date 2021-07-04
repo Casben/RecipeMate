@@ -698,14 +698,63 @@
                     <view key="view" contentMode="scaleToFill" id="j1m-6V-8uU">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" largeTitles="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nfK-iO-Mgm">
+                                <rect key="frame" x="20" y="44" width="374" height="96"/>
+                                <items>
+                                    <navigationItem title="Search" id="uVX-wV-KeJ"/>
+                                </items>
+                            </navigationBar>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="imT-C2-MF9">
+                                <rect key="frame" x="0.0" y="140" width="414" height="51"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                            </searchBar>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="30C-YJ-6qo">
+                                <rect key="frame" x="0.0" y="191" width="414" height="32"/>
+                                <segments>
+                                    <segment title="Ingredient"/>
+                                    <segment title="Recipe"/>
+                                    <segment title="Details"/>
+                                    <segment title="Time"/>
+                                    <segment title="Category"/>
+                                </segments>
+                                <color key="selectedSegmentTintColor" systemColor="systemIndigoColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </segmentedControl>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UGH-5J-jqG">
+                                <rect key="frame" x="0.0" y="409" width="414" height="404"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="dA3-Go-mft"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="nfK-iO-Mgm" firstAttribute="leading" secondItem="j1m-6V-8uU" secondAttribute="leadingMargin" id="8qW-Wz-LIa"/>
+                            <constraint firstItem="dA3-Go-mft" firstAttribute="trailing" secondItem="30C-YJ-6qo" secondAttribute="trailing" id="Dfz-a6-mM4"/>
+                            <constraint firstItem="nfK-iO-Mgm" firstAttribute="top" secondItem="j1m-6V-8uU" secondAttribute="topMargin" id="K2N-8B-MCz"/>
+                            <constraint firstItem="imT-C2-MF9" firstAttribute="trailing" secondItem="dA3-Go-mft" secondAttribute="trailing" id="Pzi-FJ-aba"/>
+                            <constraint firstItem="imT-C2-MF9" firstAttribute="leading" secondItem="dA3-Go-mft" secondAttribute="leading" id="R0z-Qr-UbL"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="nfK-iO-Mgm" secondAttribute="trailing" id="ZFy-fu-Iek"/>
+                            <constraint firstItem="30C-YJ-6qo" firstAttribute="top" secondItem="imT-C2-MF9" secondAttribute="bottom" id="gdN-lY-s4N"/>
+                            <constraint firstItem="imT-C2-MF9" firstAttribute="top" secondItem="nfK-iO-Mgm" secondAttribute="bottom" id="hS7-mh-cUo"/>
+                            <constraint firstItem="30C-YJ-6qo" firstAttribute="leading" secondItem="dA3-Go-mft" secondAttribute="leading" id="kZ5-on-c1I"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="search" id="Ffp-cJ-4qX"/>
+                    <connections>
+                        <outlet property="searchBar" destination="imT-C2-MF9" id="O2y-Fs-gbB"/>
+                        <outlet property="tableView" destination="UGH-5J-jqG" id="Pgq-Ee-Q93"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mRL-Ta-ZCV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-335" y="812"/>
+            <point key="canvasLocation" x="-336.23188405797106" y="811.60714285714278"/>
         </scene>
         <!--Ingredients-->
         <scene sceneID="iX3-xU-4bZ">
