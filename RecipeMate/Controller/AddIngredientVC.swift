@@ -29,6 +29,7 @@ class AddIngredientVC: UIViewController {
     func configure() {
         
         imagePicker.delegate = self
+        ingredientNameTextField.delegate = self
         
         addIngredientView.layer.cornerRadius = 10
         saveAndAddIngredientButton.layer.cornerRadius = 10
@@ -119,4 +120,13 @@ extension AddIngredientVC: UIImagePickerControllerDelegate, UINavigationControll
         }
         picker.dismiss(animated: true)
     }
+}
+
+extension AddIngredientVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+
 }

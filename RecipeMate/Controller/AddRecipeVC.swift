@@ -47,7 +47,7 @@ class AddRecipeVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         imagePicker.delegate = self
-        
+        configureTextFields(recipeNameTextField, descriptionTextField, instructionsTextField, prepTimeTextField)
         initializeIngredients()
         
         addRecipeView.layer.cornerRadius = 10
@@ -60,6 +60,11 @@ class AddRecipeVC: UIViewController {
         if recipeToEdit != nil {
             prepareRecipeToBeEdited()
         }
+    }
+    
+    func configureTextFields(_ textfields: UITextField...) {
+        _ = textfields.map { $0.delegate = self }
+        addDoneButtonToPrepTimeTextfield()
     }
     
     func extractRecipeToEditIngredients() -> [Ingredient] {
@@ -106,6 +111,23 @@ class AddRecipeVC: UIViewController {
         delegate?.recipeDuplicated(duplicateRecipe)
     }
     
+    func addDoneButtonToPrepTimeTextfield() {
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
+        doneToolbar.barStyle = .default
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.doneButtonAction))
+        
+        let items = [flexSpace, done]
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+        done.tintColor = .systemIndigo
+        prepTimeTextField.inputAccessoryView = doneToolbar
+    }
+    
+    @objc func doneButtonAction() {
+        prepTimeTextField.resignFirstResponder()
+    }
     
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
         delegate?.recipeChangesComplete()
@@ -303,5 +325,13 @@ extension AddRecipeVC: NSFetchedResultsControllerDelegate {
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
+    }
+}
+
+
+extension AddRecipeVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
