@@ -63,8 +63,8 @@ class AddRecipeVC: UIViewController {
     }
     
     func configureTextFields(_ textfields: UITextField...) {
-        _ = textfields.map { $0.delegate = self }
-        addDoneButtonToPrepTimeTextfield()
+        _ = textfields.map { addDoneButtonToTextFields($0) }
+        
     }
     
     func extractRecipeToEditIngredients() -> [Ingredient] {
@@ -111,22 +111,22 @@ class AddRecipeVC: UIViewController {
         delegate?.recipeDuplicated(duplicateRecipe)
     }
     
-    func addDoneButtonToPrepTimeTextfield() {
+    func addDoneButtonToTextFields(_ textfield: UITextField) {
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
         doneToolbar.barStyle = .default
         
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.doneButtonAction))
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneButtonAction))
         
         let items = [flexSpace, done]
         doneToolbar.items = items
         doneToolbar.sizeToFit()
         done.tintColor = .systemIndigo
-        prepTimeTextField.inputAccessoryView = doneToolbar
+        textfield.inputAccessoryView = doneToolbar
     }
     
     @objc func doneButtonAction() {
-        prepTimeTextField.resignFirstResponder()
+        view.endEditing(true)
     }
     
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
@@ -328,10 +328,3 @@ extension AddRecipeVC: NSFetchedResultsControllerDelegate {
     }
 }
 
-
-extension AddRecipeVC: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-}

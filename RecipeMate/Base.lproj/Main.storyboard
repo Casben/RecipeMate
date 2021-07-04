@@ -219,10 +219,10 @@
                                 <rect key="frame" x="20" y="148" width="374" height="614"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XQh-Zb-1kS">
-                                        <rect key="frame" x="8" y="4" width="75" height="75"/>
+                                        <rect key="frame" x="8" y="4" width="90" height="90"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="75" id="bb1-fh-2Fh"/>
-                                            <constraint firstAttribute="width" constant="75" id="g1d-6e-QYz"/>
+                                            <constraint firstAttribute="height" constant="90" id="bb1-fh-2Fh"/>
+                                            <constraint firstAttribute="width" constant="90" id="g1d-6e-QYz"/>
                                         </constraints>
                                         <color key="tintColor" systemColor="systemIndigoColor"/>
                                         <state key="normal" image="plusphoto"/>
@@ -231,7 +231,7 @@
                                         </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Recipe Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BqB-sf-oqf">
-                                        <rect key="frame" x="103" y="8" width="251" height="34"/>
+                                        <rect key="frame" x="118" y="8" width="236" height="34"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                         <userDefinedRuntimeAttributes>
@@ -242,9 +242,9 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tn3-Yt-tPm">
-                                        <rect key="frame" x="229" y="52" width="125" height="40"/>
+                                        <rect key="frame" x="234" y="52" width="120" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="125" id="aIg-q3-3qG"/>
+                                            <constraint firstAttribute="width" constant="120" id="aIg-q3-3qG"/>
                                             <constraint firstAttribute="height" constant="40" id="vip-GX-DiG"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
@@ -271,7 +271,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Prep Time" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="25R-RY-PEA">
-                                        <rect key="frame" x="103" y="52" width="70" height="40"/>
+                                        <rect key="frame" x="118" y="52" width="70" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="I2B-I3-gve"/>
                                             <constraint firstAttribute="width" constant="70" id="trO-I8-e94"/>
@@ -286,10 +286,10 @@
                                         </connections>
                                     </textField>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LYD-Y2-ItU">
-                                        <rect key="frame" x="8" y="4" width="75" height="75"/>
+                                        <rect key="frame" x="8" y="4" width="90" height="90"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="75" id="RYq-Ud-TIr"/>
-                                            <constraint firstAttribute="width" constant="75" id="uPc-dh-sR9"/>
+                                            <constraint firstAttribute="height" constant="90" id="RYq-Ud-TIr"/>
+                                            <constraint firstAttribute="width" constant="90" id="uPc-dh-sR9"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to add ingredients:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ht8-22-Ppt">
