@@ -20,7 +20,7 @@ class AddRecipeVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var recipeNameTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
-    @IBOutlet weak var instructionsTextField: UITextField!
+    @IBOutlet weak var instructionsTextView: UITextView!
     @IBOutlet weak var prepTimeTextField: UITextField!
     @IBOutlet weak var imageThumbView: UIImageView!
     
@@ -47,7 +47,7 @@ class AddRecipeVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         imagePicker.delegate = self
-        configureTextFields(recipeNameTextField, descriptionTextField, instructionsTextField, prepTimeTextField)
+        configureTextFields(recipeNameTextField, descriptionTextField, prepTimeTextField)
         initializeIngredients()
         
         addRecipeView.layer.cornerRadius = 10
@@ -56,6 +56,10 @@ class AddRecipeVC: UIViewController {
         imageThumbView.layer.cornerRadius = imageThumbView.frame.width / 2
         saveAndEditRecipeButton.isEnabled = false
         optionsButton.isEnabled = false
+        
+        instructionsTextView.layer.cornerRadius = 10
+        instructionsTextView.layer.borderWidth = 1
+        instructionsTextView.layer.borderColor = UIColor.quaternaryLabel.cgColor
         
         if recipeToEdit != nil {
             prepareRecipeToBeEdited()
@@ -86,7 +90,7 @@ class AddRecipeVC: UIViewController {
     func prepareRecipeToBeSaved(with createdRecipe: Recipe) {
         createdRecipe.name = recipeNameTextField.text
         createdRecipe.details = descriptionTextField.text
-        createdRecipe.instructions = instructionsTextField.text
+        createdRecipe.instructions = instructionsTextView.text
         createdRecipe.prepTime = prepTimeTextField.text
         createdRecipe.category = category
         createdRecipe.image = imageThumbView.image ?? UIImage(named: "placeholder")
@@ -123,6 +127,7 @@ class AddRecipeVC: UIViewController {
         doneToolbar.sizeToFit()
         done.tintColor = .systemIndigo
         textfield.inputAccessoryView = doneToolbar
+        instructionsTextView.inputAccessoryView = doneToolbar
     }
     
     @objc func doneButtonAction() {
@@ -162,10 +167,11 @@ class AddRecipeVC: UIViewController {
             viewModel.recipeName = sender.text
         } else if sender == descriptionTextField {
             viewModel.descriptionName = sender.text
-        } else if sender == instructionsTextField {
-            viewModel.instructions = sender.text
         } else {
             viewModel.prepTime = sender.text
+        }
+        if instructionsTextView.text.isEmpty != true {
+            viewModel.instructions = instructionsTextView.text
         }
         checkFormStatus()
     }
@@ -200,7 +206,7 @@ class AddRecipeVC: UIViewController {
         
         recipeNameTextField.text = recipeToEdit?.name
         descriptionTextField.text = recipeToEdit?.details
-        instructionsTextField.text = recipeToEdit?.instructions
+        instructionsTextView.text = recipeToEdit?.instructions
         prepTimeTextField.text = recipeToEdit?.prepTime
         
         imageThumbView.image = recipeToEdit?.image as? UIImage

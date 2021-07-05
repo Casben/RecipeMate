@@ -36,7 +36,7 @@ class SearchVC: UIViewController {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.placeholder = "What are you looking for?"
-        definesPresentationContext = false
+        definesPresentationContext = true
         
         if let textfield = searchController.searchBar.value(forKey: "searchField") as? UITextField {
             textfield.textColor = .systemIndigo
