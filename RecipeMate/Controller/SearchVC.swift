@@ -17,6 +17,12 @@ class SearchVC: UIViewController {
     let searchController = UISearchController(searchResultsController: nil)
     var controller: NSFetchedResultsController<NSFetchRequestResult>!
     
+    var filteredResults = [Any]()
+    
+    var inSearchMode: Bool {
+        return searchController.isActive && !searchController.searchBar.text!.isEmpty
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
@@ -57,7 +63,6 @@ class SearchVC: UIViewController {
             fetchRequest = Recipe.fetchRequest()
             let recipeNameSort = NSSortDescriptor(key: "name", ascending: true)
             fetchRequest.sortDescriptors = [recipeNameSort]
-            print("recipes should load")
         case 2:
             fetchRequest = Recipe.fetchRequest()
             let recipeDetailsSort = NSSortDescriptor(key: "details", ascending: true)
@@ -86,9 +91,55 @@ class SearchVC: UIViewController {
         }
     }
     
+    func fetchItems(withQuery searchText: String) {
+        var fetchRequest: NSFetchRequest<NSFetchRequestResult>!
+        
+        
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            fetchRequest = Ingredient.fetchRequest()
+            let ingredientSort = NSSortDescriptor(key: "name", ascending: true)
+            let predicate = NSPredicate(format: "name CONTAINS[cd] %@", searchText)
+            fetchRequest.sortDescriptors = [ingredientSort]
+            fetchRequest.predicate = predicate
+        case 1:
+            fetchRequest = Recipe.fetchRequest()
+            let recipeNameSort = NSSortDescriptor(key: "name", ascending: true)
+            fetchRequest.sortDescriptors = [recipeNameSort]
+        case 2:
+            fetchRequest = Recipe.fetchRequest()
+            let recipeDetailsSort = NSSortDescriptor(key: "details", ascending: true)
+            fetchRequest.sortDescriptors = [recipeDetailsSort]
+        case 3:
+            fetchRequest = Recipe.fetchRequest()
+            let recipeDetailsSort = NSSortDescriptor(key: "prepTime", ascending: true)
+            fetchRequest.sortDescriptors = [recipeDetailsSort]
+        case 4:
+            fetchRequest = Recipe.fetchRequest()
+            let recipeDetailsSort = NSSortDescriptor(key: "category", ascending: true)
+            fetchRequest.sortDescriptors = [recipeDetailsSort]
+        default:
+            break
+            
+        }
+        let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: Constants.context, sectionNameKeyPath: nil, cacheName: nil)
+        
+        controller.delegate = self
+        self.controller = controller
+        
+        do {
+            try controller.performFetch()
+        } catch {
+            print(error.localizedDescription)
+        }
+        
+        filteredResults = controller.fetchedObjects!
+    }
+    
     @IBAction func segmentedControlChanged(_ sender: UISegmentedControl) {
         controller = nil
         fetchItems()
+        filteredResults = []
         tableView.reloadData()
     }
 }
@@ -100,7 +151,7 @@ extension SearchVC: UITableViewDelegate, UITableViewDataSource {
         if let sections = controller.sections {
             return sections.count
         }
-        return 0
+        return filteredResults.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -108,7 +159,7 @@ extension SearchVC: UITableViewDelegate, UITableViewDataSource {
             let sectionInfo = sections[section]
             return sectionInfo.numberOfObjects
         }
-        return 0
+        return filteredResults.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -144,7 +195,9 @@ extension SearchVC: UITableViewDelegate, UITableViewDataSource {
 
 extension SearchVC: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        fetchItems()
+        
+        guard let searchText = searchController.searchBar.text else { return }
+        fetchItems(withQuery: searchText)
         tableView.reloadData()
     }
 }
