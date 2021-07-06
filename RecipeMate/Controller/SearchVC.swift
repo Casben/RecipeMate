@@ -12,7 +12,6 @@ class SearchVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
-    @IBOutlet weak var navItem: UINavigationItem!
     
     let searchController = UISearchController(searchResultsController: nil)
     var controller: NSFetchedResultsController<NSFetchRequestResult>!
@@ -38,7 +37,7 @@ class SearchVC: UIViewController {
     func configureSearchController() {
         searchController.searchResultsUpdater = self
         searchController.searchBar.showsCancelButton = false
-        navItem.searchController = searchController
+        navigationItem.searchController = searchController
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.placeholder = "What are you looking for?"

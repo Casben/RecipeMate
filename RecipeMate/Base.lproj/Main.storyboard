@@ -443,7 +443,7 @@
                     <connections>
                         <segue destination="AcX-R8-BIk" kind="relationship" relationship="viewControllers" id="26q-4R-KgC"/>
                         <segue destination="MW2-ax-bLN" kind="relationship" relationship="viewControllers" id="rxl-yy-bE5"/>
-                        <segue destination="ssK-fS-ww6" kind="relationship" relationship="viewControllers" id="A9B-He-Dpa"/>
+                        <segue destination="QVm-iX-7kn" kind="relationship" relationship="viewControllers" id="A9B-He-Dpa"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7sT-qw-3oJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -560,7 +560,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wj8-DU-9lr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1915.9420289855075" y="811.60714285714278"/>
+            <point key="canvasLocation" x="2826.0869565217395" y="811.60714285714278"/>
         </scene>
         <!--Add IngredientVC-->
         <scene sceneID="YlX-he-5KV">
@@ -685,9 +685,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VUg-56-JPa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2852" y="812"/>
+            <point key="canvasLocation" x="3760.8695652173915" y="811.60714285714278"/>
         </scene>
-        <!--SearchVC-->
+        <!--Search-->
         <scene sceneID="J3B-T0-UWz">
             <objects>
                 <viewController id="ssK-fS-ww6" customClass="SearchVC" customModule="RecipeMate" customModuleProvider="target" sceneMemberID="viewController">
@@ -695,12 +695,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" largeTitles="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nfK-iO-Mgm">
-                                <rect key="frame" x="20" y="44" width="374" height="96"/>
-                                <items>
-                                    <navigationItem title="Search" id="uVX-wV-KeJ"/>
-                                </items>
-                            </navigationBar>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="30C-YJ-6qo">
                                 <rect key="frame" x="3" y="140" width="408" height="32"/>
                                 <segments>
@@ -828,27 +822,23 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="UGH-5J-jqG" firstAttribute="bottom" secondItem="dA3-Go-mft" secondAttribute="bottom" id="17b-VI-LPX"/>
-                            <constraint firstItem="nfK-iO-Mgm" firstAttribute="leading" secondItem="j1m-6V-8uU" secondAttribute="leadingMargin" id="8qW-Wz-LIa"/>
                             <constraint firstItem="UGH-5J-jqG" firstAttribute="trailing" secondItem="dA3-Go-mft" secondAttribute="trailing" constant="-20" id="As0-B9-Cz1"/>
-                            <constraint firstItem="nfK-iO-Mgm" firstAttribute="top" secondItem="j1m-6V-8uU" secondAttribute="topMargin" id="K2N-8B-MCz"/>
                             <constraint firstItem="30C-YJ-6qo" firstAttribute="leading" secondItem="dA3-Go-mft" secondAttribute="leading" constant="3" id="OeP-wQ-Kkm"/>
                             <constraint firstItem="UGH-5J-jqG" firstAttribute="leading" secondItem="dA3-Go-mft" secondAttribute="leading" constant="20" id="RVn-a4-1Lc"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="nfK-iO-Mgm" secondAttribute="trailing" id="ZFy-fu-Iek"/>
+                            <constraint firstItem="30C-YJ-6qo" firstAttribute="top" secondItem="dA3-Go-mft" secondAttribute="top" id="SEU-qd-52c"/>
                             <constraint firstItem="UGH-5J-jqG" firstAttribute="top" secondItem="30C-YJ-6qo" secondAttribute="bottom" constant="20" id="gMq-TD-liC"/>
                             <constraint firstItem="30C-YJ-6qo" firstAttribute="trailing" secondItem="dA3-Go-mft" secondAttribute="trailing" constant="-3" id="lEL-yX-A3j"/>
-                            <constraint firstItem="30C-YJ-6qo" firstAttribute="top" secondItem="nfK-iO-Mgm" secondAttribute="bottom" id="oMw-ta-u14"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="search" id="Ffp-cJ-4qX"/>
+                    <navigationItem key="navigationItem" title="Search" id="eeq-nv-xA8"/>
                     <connections>
-                        <outlet property="navItem" destination="uVX-wV-KeJ" id="h64-jp-A9K"/>
                         <outlet property="segmentedControl" destination="30C-YJ-6qo" id="ir3-9P-bso"/>
                         <outlet property="tableView" destination="UGH-5J-jqG" id="Pgq-Ee-Q93"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mRL-Ta-ZCV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-336.23188405797106" y="811.60714285714278"/>
+            <point key="canvasLocation" x="573.91304347826087" y="811.60714285714278"/>
         </scene>
         <!--Ingredients-->
         <scene sceneID="iX3-xU-4bZ">
@@ -867,7 +857,26 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dQU-QP-yks" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1005.7971014492755" y="811.60714285714278"/>
+            <point key="canvasLocation" x="1915.9420289855075" y="811.60714285714278"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="JdK-Db-G7j">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QVm-iX-7kn" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="search" id="Ffp-cJ-4qX"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="Anv-fc-u61">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ssK-fS-ww6" kind="relationship" relationship="rootViewController" id="gNv-Br-I1g"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="46Z-ow-uR4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-336.23188405797106" y="811.60714285714278"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
