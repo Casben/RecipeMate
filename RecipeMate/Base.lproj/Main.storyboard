@@ -834,6 +834,8 @@
                     <connections>
                         <outlet property="segmentedControl" destination="30C-YJ-6qo" id="ir3-9P-bso"/>
                         <outlet property="tableView" destination="UGH-5J-jqG" id="Pgq-Ee-Q93"/>
+                        <segue destination="5kN-9B-hxa" kind="presentation" identifier="EditIngredientSegue" modalPresentationStyle="fullScreen" id="Rsb-Yk-h7U"/>
+                        <segue destination="BXP-mS-9CV" kind="presentation" identifier="EditRecipeSegue" modalPresentationStyle="fullScreen" id="SCb-cd-sHz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mRL-Ta-ZCV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -880,8 +882,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="d2j-c8-IYx"/>
-        <segue reference="TQm-XK-NRp"/>
+        <segue reference="Rsb-Yk-h7U"/>
+        <segue reference="SCb-cd-sHz"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="book" catalog="system" width="128" height="102"/>

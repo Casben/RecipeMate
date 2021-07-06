@@ -48,6 +48,20 @@ class SearchVC: UIViewController {
             textfield.backgroundColor = .white
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Constants.Segues.editIngredient {
+            let destination = segue.destination as? AddIngredientVC
+            destination?.ingredientToEdit = sender as? Ingredient
+            destination?.delegate = self
+        }
+        
+        if segue.identifier == Constants.Segues.editRecipe {
+            let destination = segue.destination as? AddRecipeVC
+            destination?.recipeToEdit = sender as? Recipe
+            destination?.delegate = self
+        }
+    }
 
     
     func fetchItems() {
@@ -92,31 +106,37 @@ class SearchVC: UIViewController {
     
     func fetchItems(withQuery searchText: String) {
         var fetchRequest: NSFetchRequest<NSFetchRequestResult>!
-        
+        let namePredicate = NSPredicate(format: "name CONTAINS[cd] %@", searchText)
+        let detailsPredicate = NSPredicate(format: "details CONTAINS[cd] %@", searchText)
+        let prepToimePredicate = NSPredicate(format: "prepTime CONTAINS[cd] %@", searchText)
+        let categoryPredicate = NSPredicate(format: "category.name CONTAINS[cd] %@", searchText)
         
         switch segmentedControl.selectedSegmentIndex {
         case 0:
             fetchRequest = Ingredient.fetchRequest()
             let ingredientSort = NSSortDescriptor(key: "name", ascending: true)
-            let predicate = NSPredicate(format: "name CONTAINS[cd] %@", searchText)
             fetchRequest.sortDescriptors = [ingredientSort]
-            fetchRequest.predicate = predicate
+            fetchRequest.predicate = namePredicate
         case 1:
             fetchRequest = Recipe.fetchRequest()
             let recipeNameSort = NSSortDescriptor(key: "name", ascending: true)
             fetchRequest.sortDescriptors = [recipeNameSort]
+            fetchRequest.predicate = namePredicate
         case 2:
             fetchRequest = Recipe.fetchRequest()
             let recipeDetailsSort = NSSortDescriptor(key: "details", ascending: true)
             fetchRequest.sortDescriptors = [recipeDetailsSort]
+            fetchRequest.predicate = detailsPredicate
         case 3:
             fetchRequest = Recipe.fetchRequest()
             let recipeDetailsSort = NSSortDescriptor(key: "prepTime", ascending: true)
             fetchRequest.sortDescriptors = [recipeDetailsSort]
+            fetchRequest.predicate = prepToimePredicate
         case 4:
             fetchRequest = Recipe.fetchRequest()
-            let recipeDetailsSort = NSSortDescriptor(key: "category", ascending: true)
+            let recipeDetailsSort = NSSortDescriptor(key: "name", ascending: true)
             fetchRequest.sortDescriptors = [recipeDetailsSort]
+            fetchRequest.predicate = categoryPredicate
         default:
             break
             
@@ -176,6 +196,16 @@ extension SearchVC: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let _ = tableView.cellForRow(at: indexPath) as? IngredientCell {
+            let ingredient = controller.object(at: indexPath) as? Ingredient
+            performSegue(withIdentifier: Constants.Segues.editIngredient, sender: ingredient)
+        } else if let _ = tableView.cellForRow(at: indexPath) as? RecipeCell {
+            let recipe = controller.object(at: indexPath) as? Recipe
+                performSegue(withIdentifier: Constants.Segues.editRecipe, sender: recipe)
+            }
+        }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
@@ -239,4 +269,22 @@ extension SearchVC: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
     }
+}
+
+extension SearchVC: AddAndEditIngredientDelegate {
+    func ingredientChangesComplete() {
+        dismiss(animated: true)
+    }
+}
+
+extension SearchVC: AddAndEditRecipeDelegate {
+    func recipeChangesComplete() {
+        dismiss(animated: true)
+    }
+    
+    func recipeDuplicated(_ recipe: Recipe) {
+        
+    }
+    
+    
 }
